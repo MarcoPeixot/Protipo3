@@ -22,10 +22,7 @@ export default class MainScene extends Phaser.Scene {
         this.load.image('tiles_floresta', "./assets/mapas/nova_floresta/cena_floresta.png")
         this.load.tilemapTiledJSON("map_florestar", "./assets/mapas/nova_floresta/floresta.json");
         // Carrega os assets necessários para a cena
-        this.load.image("tile_grass", "./assets/mapas/floresta/grass.png");
-        this.load.image("tile_water", "./assets/mapas/floresta/water.png");
-        this.load.image("tile_objetos", "./assets/mapas/floresta/objetos.png");
-        this.load.tilemapTiledJSON("map_florest", "./assets/mapas/floresta/new_map.json");
+        
         //this.load.spritesheet("tyler", "./assets/sprites_personagens/assets_tyler/tyler_armor.png", { frameWidth: 32, frameHeight: 32 });
         //this.load.spritesheet("vanessa", "./assets/sprites_personagens/assets_vanessa/vanessa_lado.png", { frameWidth: 32, frameHeight: 32 });
         this.load.image("tecla_e", "./assets/tecla_e_pixel.png");
@@ -70,6 +67,7 @@ export default class MainScene extends Phaser.Scene {
 
         // Adição das camadas do mapa
         this.ground = this.map.createLayer("ground", this.tilesetGround, 0, 0);
+        this.ground.setCollisionByProperty({collider: true})
        
 
     }
@@ -87,7 +85,7 @@ export default class MainScene extends Phaser.Scene {
         }
 
         // Configuração de colisões do jogador com elementos do mapa
-        
+        this.physics.add.collider(this.tyler, this.ground)
 
         // Inicialização das animações do jogador
         Animacoes.createAnimations(this, 'tyler');
