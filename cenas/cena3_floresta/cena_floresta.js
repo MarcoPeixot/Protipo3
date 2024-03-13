@@ -18,6 +18,9 @@ export default class MainScene extends Phaser.Scene {
     }
 
     preload() {
+        //carrega os novos assets da floresta
+        this.load.image('tiles_floresta', "./assets/mapas/nova_floresta/cena_floresta.png")
+        this.load.tilemapTiledJSON("map_florestar", "./assets/mapas/nova_floresta/floresta.json");
         // Carrega os assets necessários para a cena
         this.load.image("tile_grass", "./assets/mapas/floresta/grass.png");
         this.load.image("tile_water", "./assets/mapas/floresta/water.png");
@@ -61,21 +64,14 @@ export default class MainScene extends Phaser.Scene {
 
     criarMapa() {
         // Criação do mapa
-        this.map = this.make.tilemap({ key: "map_florest" });     // Criação da instância do mapa
-        this.tilesetGrass = this.map.addTilesetImage("grass", "tile_grass");  // Adição do tileset de grama
-        this.tilesetWater = this.map.addTilesetImage("water", "tile_water");  // Adição do tileset de água
-        this.tilesetObject = this.map.addTilesetImage("objetos", "tile_objetos");  // Adição do tileset de objetos
+        this.map = this.make.tilemap({ key: "map_florestar" });     // Criação da instância do mapa
+        this.tilesetGround = this.map.addTilesetImage("cena_floresta", "tiles_floresta");
+       ;  // Adição do tileset de objetos
 
         // Adição das camadas do mapa
-        this.ground = this.map.createLayer("ground", this.tilesetGrass, 0, 0);
-        this.water = this.map.createLayer("water", this.tilesetWater, 0, 0);
-        this.ponte = this.map.createLayer("ponte", this.tilesetObject, 0, 0);
-        this.object = this.map.createLayer("object", this.tilesetObject, 0, 0);
+        this.ground = this.map.createLayer("ground", this.tilesetGround, 0, 0);
+       
 
-        // Configuração de colisões
-        this.water.setCollisionByProperty({ collider: true });
-        this.object.setCollisionByProperty({ collider: true });
-        this.object.setDepth(10);
     }
 
     criarPersonagem() {
@@ -91,8 +87,7 @@ export default class MainScene extends Phaser.Scene {
         }
 
         // Configuração de colisões do jogador com elementos do mapa
-        this.physics.add.collider(this.tyler, this.water);
-        this.physics.add.collider(this.tyler, this.object);
+        
 
         // Inicialização das animações do jogador
         Animacoes.createAnimations(this, 'tyler');
