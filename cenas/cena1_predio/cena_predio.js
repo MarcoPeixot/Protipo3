@@ -51,11 +51,11 @@ export default class Scene1 extends Phaser.Scene {
 
         this.passar = 10;
         
-        this.texto = this.add.text(300,400,  { fontFamily: 'Arial', fontSize: 32, color: '#000000' })
+        this.texto = this.add.text(300,600,  { fontFamily: 'Arial', fontSize: 32, color: '#000000' })
     
         Texto.showTextLetterByLetter(this, falas[0],this.texto)
 
-        this.tecla_E = this.add.sprite(this.tyler.x, this.tyler.y - 40, "movimentacao").setOrigin(0.5, 0.5).setVisible(true).setScale(2);
+        this.tecla_E = this.add.sprite(this.tyler.x + 90, this.tyler.y - 60, "movimentacao").setOrigin(0.5, 0.5).setVisible(true).setScale(2);
 
 
     }
