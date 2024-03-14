@@ -18020,7 +18020,7 @@
 </data>
  </layer>
  <objectgroup id="5" name="player">
-  <object id="3" name="spawning point" x="322.667" y="495.333">
+  <object id="3" name="spawning point" x="346.889" y="496.342">
    <point/>
   </object>
  </objectgroup>

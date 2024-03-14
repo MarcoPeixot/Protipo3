@@ -116,7 +116,7 @@ export default class Corredor extends Phaser.Scene {
         }
 
         if (this.voltar.hasTileAtWorldXY(this.tyler.body.x, this.tyler.body.y)) {
-            this.transitionToScene2("scene2");
+            this.transitionToScene2("cena_exterior");
             mudarCena = 0;
             // this.concreteFootsteps.stop();
         }
@@ -128,6 +128,5 @@ export default class Corredor extends Phaser.Scene {
         //this.entrada.stop();
         this.scene.start(cena); // Inicia a cena 1
         this.passosConcreto.stop();
-        this.musicaRei.stop();
     }
 }

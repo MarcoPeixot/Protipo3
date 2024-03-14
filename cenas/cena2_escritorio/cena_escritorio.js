@@ -23,6 +23,7 @@ export default class SceneOffice extends Phaser.Scene {
     }
 
     create() {
+        this.passosConcreto = this.sound.add("passosConcreto", { loop: true }).setVolume(0.6);
         // Trasição de fade in para quando a cena iniciar
         this.cameras.main.fadeIn(1000, 0, 0, 0);
         this.criarMapa();
@@ -30,7 +31,7 @@ export default class SceneOffice extends Phaser.Scene {
         this.criarNpc()
         this.control.createUnico();
 
-        this.tecla_E = this.add.sprite(this.tyler.x, this.tyler.y - 30, "tecla_e").setOrigin(0.5, 0.5).setVisible(true).setScale(1.5);
+        this.tecla_E = this.add.sprite(this.tyler.x, this.tyler.y - 20, "tecla_e").setOrigin(0.5, 0.5).setVisible(true).setScale(1);
         this.tecla_E.setInteractive();
         this.tecla_E.on('pointerup', () => {
             // Iniciar a cena principal quando o botão "play" é clicado
@@ -59,7 +60,7 @@ export default class SceneOffice extends Phaser.Scene {
         );
 
         // Cria o jogador, câmera e controles
-        this.tyler = new Player(this, spawnPoint.x, spawnPoint.y, 'tyler', 0.7);
+        this.tyler = new Player(this, spawnPoint.x, spawnPoint.y, 'tyler', 0.65);
         this.camera = new Camera(this, this.tyler, this.map);
         this.camera.createZoom_2()
         this.control = new Controls(this, this.tyler);
@@ -80,13 +81,18 @@ export default class SceneOffice extends Phaser.Scene {
         );
 
         // Criação do NPC Vanessa
-        this.vanessa = this.physics.add.sprite(spawnPointNpc.x, spawnPointNpc.y, "vanessa").setScale(0.7)
+        this.vanessa = this.physics.add.sprite(spawnPointNpc.x, spawnPointNpc.y, "vanessa").setScale(0.65)
 
         // Configuração do texto associado ao NPC Vanessa
         this.textoVanessa = this.add.text(this.vanessa.x, this.vanessa.y - 40, '', { fontFamily: 'Arial', fontSize: 16, color: '#ffffff' }).setOrigin(0.5);
     }
 
     update() {
+        if ((this.tyler.body.velocity.x !== 0 || this.tyler.body.velocity.y !== 0) && !this.passosConcreto.isPlaying) {
+            this.passosConcreto.play(); // Reproduz o som dos passos
+        } else if (this.tyler.body.velocity.x === 0 && this.tyler.body.velocity.y === 0 && this.passosConcreto.isPlaying) {
+            this.passosConcreto.stop(); // Para o som dos passos se o jogador não estiver se movendo
+        }
         this.control.updateUnico();
         this.tecla_E.setPosition(this.tyler.x, this.tyler.y - 30);
 

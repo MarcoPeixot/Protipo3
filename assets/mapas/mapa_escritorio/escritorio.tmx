@@ -3827,22 +3827,22 @@
   </tile>
   <tile id="764">
    <properties>
-    <property name="collider" type="bool" value="true"/>
+    <property name="collider" type="bool" value="false"/>
    </properties>
   </tile>
   <tile id="765">
    <properties>
-    <property name="collider" type="bool" value="true"/>
+    <property name="collider" type="bool" value="false"/>
    </properties>
   </tile>
   <tile id="766">
    <properties>
-    <property name="collider" type="bool" value="true"/>
+    <property name="collider" type="bool" value="false"/>
    </properties>
   </tile>
   <tile id="767">
    <properties>
-    <property name="collider" type="bool" value="true"/>
+    <property name="collider" type="bool" value="false"/>
    </properties>
   </tile>
   <tile id="768">
@@ -4127,7 +4127,7 @@
   </tile>
   <tile id="824">
    <properties>
-    <property name="collider" type="bool" value="true"/>
+    <property name="collider" type="bool" value="false"/>
    </properties>
   </tile>
   <tile id="825">

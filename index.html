@@ -38,7 +38,9 @@
         import Scene2 from './cenas/cena4_exterior/cena_exterior.js';
         import SceneCastle from './cenas/cena5_castelo/cena_castelo.js';
         import SceneCorredor from './cenas/cena6_corredor_castelo/cena_corredor.js';
+        import SceneEscriba from './cenas/cena7_escriba/cena_escriba.js';
         import minigame1 from './cenas/minigame1.js'
+        import minigame2 from './cenas/minigame2.js'
         // Configuração do jogo com Phaser
         const config = {
             pixelArt: true,
@@ -55,7 +57,7 @@
                     debug: true
                 }
             },
-            scene: [Tela, Scene1, Scene2, MainScene, SceneCastle, minigame1, SceneOffice, SceneCorredor]
+            scene: [Tela, Scene1, Scene2, MainScene, SceneCastle, minigame1, minigame2, SceneOffice, SceneCorredor, SceneEscriba]
         };
 
         // Criação da instância do jogo

@@ -113,7 +113,7 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":416.242696969697,
+                 "x":416.243,
                  "y":78.9091
                 }, 
                 {
@@ -7047,7 +7047,7 @@
                         {
                          "name":"collider",
                          "type":"bool",
-                         "value":true
+                         "value":false
                         }]
                 }, 
                 {
@@ -7056,7 +7056,7 @@
                         {
                          "name":"collider",
                          "type":"bool",
-                         "value":true
+                         "value":false
                         }]
                 }, 
                 {
@@ -7065,7 +7065,7 @@
                         {
                          "name":"collider",
                          "type":"bool",
-                         "value":true
+                         "value":false
                         }]
                 }, 
                 {
@@ -7074,7 +7074,7 @@
                         {
                          "name":"collider",
                          "type":"bool",
-                         "value":true
+                         "value":false
                         }]
                 }, 
                 {
@@ -7588,7 +7588,7 @@
                         {
                          "name":"collider",
                          "type":"bool",
-                         "value":true
+                         "value":false
                         }]
                 }, 
                 {

@@ -7,8 +7,7 @@ import Texto from '../../player/texto.js';          // Importa o módulo de text
 
 var mudarCena = 0;  // Variável global para controlar a mudança de cena
 var i = 0;
-var y = 0;
-var falas = ["Olá, seja bem-vindo Tyler", "Siga em frente!"];
+var falas = ["Ache o caminho para o castelo!"];
 
 export default class MainScene extends Phaser.Scene {
     constructor() {
@@ -21,8 +20,9 @@ export default class MainScene extends Phaser.Scene {
         //carrega os novos assets da floresta
         this.load.image('tiles_floresta', "./assets/mapas/nova_floresta/cena_floresta.png")
         this.load.tilemapTiledJSON("map_florestar", "./assets/mapas/nova_floresta/floresta.json");
+        this.load.image("tecla_e", "./assets/tecla_e_pixel.png");
         // Carrega os assets necessários para a cena
-        
+
         //this.load.spritesheet("tyler", "./assets/sprites_personagens/assets_tyler/tyler_armor.png", { frameWidth: 32, frameHeight: 32 });
         //this.load.spritesheet("vanessa", "./assets/sprites_personagens/assets_vanessa/vanessa_lado.png", { frameWidth: 32, frameHeight: 32 });
         this.load.image("tecla_e", "./assets/tecla_e_pixel.png");
@@ -35,13 +35,9 @@ export default class MainScene extends Phaser.Scene {
         // Inicializa a cena
         this.criarMapa();       // Configuração e criação do mapa
         this.criarPersonagem();  // Criação do jogador e controles
-        //this.criarNpc();         // Configuração e criação do NPC
+
         this.controls.create();
 
-        // Configurações adicionais da cena
-        this.transicaoPonte = 1000;
-        //this.textoJaExibido = false;
-        // this.segundaMensagemExibida = false;
         this.tecla_E = this.add.sprite(this.tyler.x, this.tyler.y - 40, "tecla_e").setOrigin(0.5, 0.5).setVisible(false).setScale(2);
         this.tecla_E.setInteractive();
         this.tecla_E.on('pointerup', () => {
@@ -57,19 +53,23 @@ export default class MainScene extends Phaser.Scene {
         this.passaros = this.sound.add("passaros", { loop: true }).setVolume(0.2);
         this.passaros.play();
 
+        this.caixaDialogo = this.add.image(this.tyler.x, this.tyler.y + 50, "caixaDialogo").setScale(0.5)
+        this.caixaDialogo.setVisible(false)
+
+        this.texto = this.add.text(this.tyler.x, this.tyler.y + 50, '', { fontFamily: 'Arial', fontSize: 13, color: 'black' }).setOrigin(0.5);
+
     }
 
     criarMapa() {
         // Criação do mapa
-        this.map = this.make.tilemap({ key: "map_florestar" });     // Criação da instância do mapa
+        this.map = this.make.tilemap({ key: "map_florestar" });
         this.tilesetGround = this.map.addTilesetImage("cena_floresta", "tiles_floresta");
-       ;  // Adição do tileset de objetos
 
         // Adição das camadas do mapa
         this.ground = this.map.createLayer("ground", this.tilesetGround, 0, 0);
-        this.ground.setCollisionByProperty({collider: true})
-       
-
+        this.informacao = this.map.createLayer("informacao", this.tilesetGround, 0, 0);
+        this.passar = this.map.createLayer("passar", this.tilesetGround, 0, 0);
+        this.ground.setCollisionByProperty({ collider: true })
     }
 
     criarPersonagem() {
@@ -96,25 +96,12 @@ export default class MainScene extends Phaser.Scene {
         this.playerCamera.createMiniMap();
     }
 
-    criarNpc() {
-        // Configuração inicial do NPC
-        const spawnPointNpc = this.map.findObject(
-            "npc1",
-            (objects) => objects.name === "spawning point npc"
-        );
-
-        // Criação do NPC Vanessa
-        this.vanessa = this.physics.add.sprite(spawnPointNpc.x, spawnPointNpc.y, "vanessa").setScale(1.2)
-
-        // Configuração do texto associado ao NPC Vanessa
-        this.textoVanessa = this.add.text(this.vanessa.x, this.vanessa.y - 40, '', { fontFamily: 'Arial', fontSize: 16, color: '#ffffff' }).setOrigin(0.5);
-    }
-
-
     update() {
         // Atualização da cena a cada quadro
         this.controls.update();  // Atualiza os controles
         this.tecla_E.setPosition(this.tyler.x, this.tyler.y - 40);
+        this.caixaDialogo.setPosition(this.tyler.x, this.tyler.y + 50);
+        this.texto.setPosition(this.tyler.x, this.tyler.y + 50)
 
         if ((this.tyler.body.velocity.x !== 0 || this.tyler.body.velocity.y !== 0) && !this.passos.isPlaying) {
             this.passos.play(); // Reproduz o som dos passos
@@ -122,32 +109,32 @@ export default class MainScene extends Phaser.Scene {
             this.passos.stop(); // Para o som dos passos se o jogador não estiver se movendo
         }
 
-        // Verifica se o jogador alcançou o ponto de transição para a próxima cena
-        if (this.tyler.x >= this.transicaoPonte) {
-            this.transicaoCena2('scene2');  // Inicia a transição para a próxima cena
-            mudarCena = 1;  // Atualiza a variável global para indicar a mudança de cena
+
+        if (this.passar.hasTileAtWorldXY(this.tyler.body.x, this.tyler.body.y)) {
+            this.transicaoCena2("cena_exterior")
+            mudarCena = 1;
         }
 
-        // Verifica se há overlap entre o jogador e o NPC Vanessa
-        const overlapping = this.physics.overlap(this.tyler, this.vanessa);
-
-        if (overlapping) {
+        if (this.informacao.hasTileAtWorldXY(this.tyler.body.x, this.tyler.body.y)) {
             this.tecla_E.setVisible(true);
 
             // Verifica se a tecla "E" foi pressionada
             if (Phaser.Input.Keyboard.JustDown(this.controls.interacao)) {
-                Texto.showTextLetterByLetter(this, falas[i], this.textoVanessa);
+                this.caixaDialogo.setVisible(true);
+                this.texto.setVisible(true)
+                Texto.showTextLetterByLetter(this, falas[i], this.texto);
                 i++;
                 if (i === falas.length) {
                     i = 0;
                 }
             }
-
-           
-            
-        } else {
-            this.tecla_E.setVisible(false);
         }
+        else {
+            this.tecla_E.setVisible(false);
+            this.caixaDialogo.setVisible(false);
+            this.texto.setVisible(false)
+        }
+
     }
 
     transicaoCena2(cena) {
@@ -155,7 +142,4 @@ export default class MainScene extends Phaser.Scene {
         this.passaros.stop();
         this.scene.start(cena);  // Inicia a transição para a próxima cena
     }
-    
-
-
 }

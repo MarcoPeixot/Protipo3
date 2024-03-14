@@ -33,5 +33,13 @@ export default class AnimationManager {
             frameRate: 10,
             repeat: -1
         })
+
+        scene.anims.create({
+            key: 'parar',
+            frames: scene.anims.generateFrameNumbers(sprite, { start: 9, end: 9 }),
+            frameRate: 10,
+            repeat: -1
+        })
+
     }
 }

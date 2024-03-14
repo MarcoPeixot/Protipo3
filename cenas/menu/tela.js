@@ -3,18 +3,21 @@ export default class Tela extends Phaser.Scene {
         super({
             key: 'Tela'
         });
-
-        this.buttonClicked = null;
     }
 
     preload() {
         // Carrega os recursos necessários
-        this.load.image('tela', 'assets/tela_inicial.png');
-        this.load.image('play', 'assets/play_btn.png');
+        this.load.image('tela', 'assets/tela_inicial_2.png');
+        this.load.image('play', 'assets/play.png');
         this.load.image('brasil', 'assets/brasil.jpg');
         this.load.image('credits', 'assets/Credits.png');
         this.load.image('EUA', 'assets/EUA.png')
         //this.load.audio("audio", './assets/AudioFundo.mp3');
+
+        //Carregando recursos para todas as cenas
+        this.load.image("tecla_e", "./assets/tecla_e_pixel.png");
+        this.load.image('caixaDialogo', './assets/caixaDialogo.png');
+
 
         //Carregando recursos da cena predio
         this.load.image('tile_predio', './assets/mapas/predio/Tileset_3_MV.png');
@@ -36,8 +39,6 @@ export default class Tela extends Phaser.Scene {
         this.load.audio("oceano", "./assets/audios/ocean.mp3")
         this.load.audio("musicaRei", "./assets/audios/entrance.mp3")
         this.load.image("movimentacao", "./assets/teclas_wasd.png");
-
-        //Carregando recursos de outras cenas
     }
 
     create() {
@@ -73,7 +74,7 @@ export default class Tela extends Phaser.Scene {
             play.setScale(buttonScale * 2);
         });
 
-        
+
         brasil.setInteractive();
         brasil.on('pointerover', () => {
             brasil.setScale(buttonScale / 3.5);
@@ -105,6 +106,6 @@ export default class Tela extends Phaser.Scene {
         //this.audio = this.sound.add("audio", { loop: true });
         //this.audio.play();
         //this.audio.setVolume(0.3)
-        
+
     }
 }

@@ -7,7 +7,7 @@ import Texto from '../../player/texto.js';          // Importa o módulo de text
 
 
 
-var falas = ["Olá, seja bem-vindo Metaverso\n isto é uma simulação para \n contratar fornecedores! \n Para começar entre no prédio. "];
+var falas = ["Olá, seja bem-vindo ao nosso jogo. \n Entre no prédio para  \n contratar fornecedores! \n Para começar entre no prédio. "];
 
 export default class Scene1 extends Phaser.Scene {
     constructor() {
@@ -32,13 +32,15 @@ export default class Scene1 extends Phaser.Scene {
         this.control.create();
 
         this.passar = 10;
-        
-        this.texto = this.add.text(300,600,  { fontFamily: 'Arial', fontSize: 32, color: '#000000' })
-    
-        Texto.showTextLetterByLetter(this, falas[0],this.texto)
 
-        this.tecla_E = this.add.sprite(this.tyler.x + 90, this.tyler.y - 60, "movimentacao").setOrigin(0.5, 0.5).setVisible(true).setScale(2);
+        this.tecla_E = this.add.sprite(this.tyler.x + 90, this.tyler.y - 50, "movimentacao").setOrigin(0.5, 0.5).setVisible(true).setScale(2);
 
+        this.caixaDialogo = this.add.image(350, 600, "caixaDialogo").setScale(0.9)
+        this.caixaDialogo.setVisible(true)
+
+        this.textoInicio = this.add.text(190, 570, { fontFamily: 'Arial', fontSize: 16, color: 'black' })
+
+        Texto.showTextLetterByLetter(this, falas[0], this.textoInicio)
 
     }
 
@@ -74,7 +76,7 @@ export default class Scene1 extends Phaser.Scene {
         this.decoracao.setCollisionByProperty({ collider: true });
         this.carinha.setCollisionByProperty({ collider: true });
 
-        this.carros.setDepth(10);
+        //this.carros.setDepth(10);
         this.decoracao.setDepth(10);
         this.carinha.setDepth(10);
         this.plantas.setDepth(10);
@@ -113,14 +115,17 @@ export default class Scene1 extends Phaser.Scene {
     }
 
     update() {
+
         this.control.update();
         if ((this.tyler.body.velocity.x !== 0 || this.tyler.body.velocity.y !== 0) && !this.passosConcreto.isPlaying) {
             this.passosConcreto.play(); // Reproduz o som dos passos
+            this.caixaDialogo.setVisible(false);
+            this.textoInicio.setVisible(false);
         } else if (this.tyler.body.velocity.x === 0 && this.tyler.body.velocity.y === 0 && this.passosConcreto.isPlaying) {
             this.passosConcreto.stop(); // Para o som dos passos se o jogador não estiver se movendo
         }
 
-        
+
         if (this.tyler.x >= 800 && this.tyler.y <= 450) {
             this.transitionToMainScene('SceneOffice');
             this.passosConcreto.stop();
