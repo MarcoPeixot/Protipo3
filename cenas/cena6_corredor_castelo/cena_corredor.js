@@ -25,7 +25,9 @@ export default class Corredor extends Phaser.Scene {
     create() {
         this.passosConcreto = this.sound.add("passosConcreto", { loop: true }).setVolume(0.7);
         this.musicaRei = this.sound.add("musicaRei", { loop: true }).setVolume(0.2);
-        this.musicaRei.play();
+        if(mudarCena === 0){
+            this.musicaRei.play();
+        }
 
         // Trasição de fade in para quando a cena iniciar
         this.cameras.main.fadeIn(1000, 0, 0, 0);
@@ -110,15 +112,14 @@ export default class Corredor extends Phaser.Scene {
 
 
         if (this.passar.hasTileAtWorldXY(this.tyler.body.x, this.tyler.body.y)) {
-            this.transitionToScene2("cena_castelo")
             mudarCena = 1;
-            console.log(mudarCena)
+            this.transitionToScene2("cena_castelo")
         }
 
         if (this.voltar.hasTileAtWorldXY(this.tyler.body.x, this.tyler.body.y)) {
+            mudarCena = 0
             this.transitionToScene2("cena_exterior");
-            mudarCena = 0;
-            // this.concreteFootsteps.stop();
+            this.musicaRei.stop()
         }
 
 

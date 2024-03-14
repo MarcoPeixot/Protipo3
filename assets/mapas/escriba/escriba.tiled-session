@@ -21,6 +21,17 @@
         "C:/Users/Inteli/Documents/GitHub/2024-T0014-IN01-G03/src/assets/mapas/castelo/sala_rei.tmx#salarei": {
             "scaleInDock": 1
         },
+        "C:/Users/Inteli/Documents/GitHub/2024-T0014-IN01-G03/src/assets/mapas/exterior/exterior.tmx": {
+            "scale": 1.1743055555555555,
+            "selectedLayer": 5,
+            "viewCenter": {
+                "x": 432.1703134240094,
+                "y": 240.56771141336486
+            }
+        },
+        "C:/Users/Inteli/Documents/GitHub/2024-T0014-IN01-G03/src/assets/mapas/exterior/exterior.tmx#exteriorcastelo": {
+            "scaleInDock": 1
+        },
         "C:/Users/Inteli/Documents/GitHub/2024-T0014-IN01-G03/src/assets/mapas/floresta/cena_floresta.tmx": {
             "scale": 0.9594999999999999,
             "selectedLayer": 0,
@@ -115,6 +126,7 @@
     "project": "escriba.tiled-project",
     "property.type": "bool",
     "recentFiles": [
+        "C:/Users/Inteli/Documents/GitHub/2024-T0014-IN01-G03/src/assets/mapas/exterior/exterior.tmx",
         "C:/Users/Inteli/Documents/GitHub/2024-T0014-IN01-G03/src/assets/mapas/castelo/sala_rei.tmx",
         "escriba.tmx",
         "C:/Users/Inteli/Documents/GitHub/2024-T0014-IN01-G03/src/assets/mapas/mapa_escritorio/escritorio.tmx",

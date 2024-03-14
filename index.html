@@ -22,7 +22,7 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            background: #070c28; 
+            background: #000000; 
         }
     </style>
 </head>
@@ -54,10 +54,10 @@
                 default: 'arcade',
                 arcade: {
                     gravity: { y: 0 },
-                    debug: false
+                    debug: true
                 }
             },
-            scene: [Tela, Scene1, Scene2, MainScene, SceneCastle, minigame1, minigame2, SceneOffice, SceneCorredor, SceneEscriba]
+            scene: [ Tela, Scene1, minigame2, Scene2, MainScene, SceneCastle, minigame1,  SceneOffice, SceneCorredor, SceneEscriba]
         };
 
         // Criação da instância do jogo

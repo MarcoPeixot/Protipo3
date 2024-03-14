@@ -41,7 +41,17 @@ export default class Scene2 extends Phaser.Scene {
 
 
         this.tecla_E = this.add.sprite(this.tyler.x + 90, this.tyler.y - 50, "tecla_e").setOrigin(0.5, 0.5).setVisible(false).setScale(2);
-
+        this.tecla_E.setInteractive();
+        this.tecla_E.on('pointerup', () => {
+            // Iniciar a cena principal quando o botão "play" é clicado
+            this.caixaDialogo.setVisible(true)
+            this.textoLoja.setVisible(true)
+            Texto.showTextLetterByLetter(this, falas[i], this.textoLoja);
+            i++
+            if (i === falas.length) {
+                i = 0;
+            }
+        });
         this.caixaDialogo = this.add.image(350, 600, "caixaDialogo").setScale(0.4)
         this.caixaDialogo.setVisible(false)
         this.textoLoja = this.add.text(this.donoLoja.x + 80, this.donoLoja.y + 80, '', { fontFamily: 'Arial', fontSize: 16, color: 'black' }).setOrigin(0.5);
@@ -90,9 +100,6 @@ export default class Scene2 extends Phaser.Scene {
         this.camera = new Camera(this, this.tyler, this.map);
         this.camera.createZoom_1();
 
-
-        this.passarPonte = 950;
-        this.passarPonteY = 205;
     }
 
     criarNpc() {

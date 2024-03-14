@@ -3,18 +3,12 @@ var ya = 0
 var za = 0
 var wa = 0
 var va = 0
-var ta = 0
-var sa = 0
-var ra = 0
-var qa =0
+var qa = 0
 var clicou1 = false;
 var clicou2 = false;
 var clicou3 = false;
 var clicou4 = false;
 var clicou5 = false;
-var clicou6 = false;
-var clicou7 = false;
-var clicou8 = false;
 var clicou9 = false;
 
 export default class Minigame1 extends Phaser.Scene {
@@ -109,9 +103,9 @@ export default class Minigame1 extends Phaser.Scene {
 
         confirmar.setInteractive();
         confirmar.on('pointerdown', () => {
-            console.log(xa + ya + za + wa + va + ta + sa + ra + qa)
+            console.log(xa + ya + za + wa + va + qa)
             confirmar.setScale(0.4)
-            if((xa + ya + za + wa + va + ta + sa + ra + qa) === 270){
+            if((xa + ya + za + wa + va + qa) === 47){
               //  this.scene.start('Scene');
               this.transitionToScene("minigame2")
             }
@@ -155,7 +149,7 @@ export default class Minigame1 extends Phaser.Scene {
         } else if (num === 3) {
             if (clicou3) {
                 pergaminho.setScale(0.29);
-                za = 3;
+                za = 4;
                 clicou3 = false;
             } else {
                 pergaminho.setScale(0.25);
@@ -172,7 +166,7 @@ export default class Minigame1 extends Phaser.Scene {
                     wa = 0;
                     clicou4 = true;
                 }
-        } else if (num === 5) {
+        } else if (num >=5 && num <= 8) {
             if (clicou5) {
                 pergaminho.setScale(0.29);
                 va = 16;
@@ -182,40 +176,10 @@ export default class Minigame1 extends Phaser.Scene {
                 va = 0;
                 clicou5 = true;
             }
-        } else if (num === 6) {
-        if (clicou6) {
-            pergaminho.setScale(0.29);
-            ta = 32;
-            clicou6 = false;
-        } else {
-            pergaminho.setScale(0.25);
-            ta = 0;
-            clicou6 = true;
-        }
-        } else if (num === 7) {
-        if (clicou7) {
-            pergaminho.setScale(0.29);
-            sa = 64;
-            clicou7 = false;
-        } else {
-            pergaminho.setScale(0.25);
-            sa = 0;
-            clicou7 = true;
-        }
-        } else if (num === 8) {
-            if (clicou8) {
-                pergaminho.setScale(0.29);
-                ra = 128;
-                clicou8 = false;
-            } else {
-                pergaminho.setScale(0.25);
-                ra = 0;
-                clicou8 = true;
-            }
         } else if (num === 9) {
             if (clicou9) {
                 pergaminho.setScale(0.29);
-                qa = 256;
+                qa = 32;
                 clicou9 = false;
             } else {
                 pergaminho.setScale(0.25);

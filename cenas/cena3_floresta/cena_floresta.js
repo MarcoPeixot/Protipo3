@@ -41,8 +41,10 @@ export default class MainScene extends Phaser.Scene {
         this.tecla_E = this.add.sprite(this.tyler.x, this.tyler.y - 40, "tecla_e").setOrigin(0.5, 0.5).setVisible(false).setScale(2);
         this.tecla_E.setInteractive();
         this.tecla_E.on('pointerup', () => {
+            this.caixaDialogo.setVisible(true)
+            this.texto.setVisible(true)
             // Iniciar a cena principal quando o botão "play" é clicado
-            Texto.showTextLetterByLetter(this, falas[i], this.textoVanessa);
+            Texto.showTextLetterByLetter(this, falas[i], this.texto);
             i++;
             if (i === falas.length) {
                 i = 0;

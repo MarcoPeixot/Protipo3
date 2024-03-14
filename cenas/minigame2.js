@@ -8,14 +8,14 @@ export default class Minigame2 extends Phaser.Scene {
     //Carrega as imagens do jogo
     preload() {
         this.load.image('floresta', 'assets/fundo.png');
-        this.load.image('papel', 'assets/tecla.png');
+        this.load.image('papel_celeste', 'assets/Perfis/PERFIL_CELESTEsemfundo.png');
         this.load.image('botao', 'assets/Play.png')
     }
     
     create() {
         //cria a imagem de fundo
         this.add.image(0, 0, 'floresta').setOrigin(0).setScale(1.5);
-        var pedra1 = this.add.image(400, 400, 'papel').setScale(0.5).setVisible(true);
+        var pedra1 = this.add.image(550, 340, 'papel_celeste').setScale(0.4).setVisible(true);
         var pedra2 = this.add.image(400, 400, 'papel').setScale(0.6).setVisible(false);
         var pedra3 = this.add.image(400, 400, 'papel').setScale(0.5).setVisible(false);
         var verdadeiro = this.add.image(500, 500, 'botao').setScale(0.2);
