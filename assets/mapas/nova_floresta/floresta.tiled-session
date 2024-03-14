@@ -7,6 +7,9 @@
     "expandedProjectPaths": [
     ],
     "fileStates": {
+        "": {
+            "scaleInEditor": 1
+        },
         "#cena_floresta": {
             "scaleInDock": 0.25,
             "scaleInEditor": 1
@@ -44,6 +47,20 @@
         },
         "C:/Users/Inteli/Documents/Prototipos/prototipo3/Protipo3/assets/mapas/floresta/cena_floresta.tmx#water": {
             "scaleInDock": 1
+        },
+        "floresta.tmx": {
+            "expandedObjectLayers": [
+                2
+            ],
+            "scale": 3,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 907.6666666666666,
+                "y": 372.16666666666663
+            }
+        },
+        "floresta.tmx#cena_floresta": {
+            "scaleInDock": 1
         }
     },
     "last.exportedFilePath": "C:/Users/Inteli/Documents/Prototipos/prototipo3/Protipo3/assets/mapas/nova_floresta",
@@ -55,6 +72,7 @@
     "project": "floresta.tiled-project",
     "property.type": "bool",
     "recentFiles": [
+        "floresta.tmx",
         "C:/Users/Inteli/Documents/GitHub/2024-T0014-IN01-G03/src/assets/mapas/floresta/cena_floresta.tmx",
         "C:/Users/Inteli/Documents/Prototipos/prototipo3/Protipo3/assets/mapas/floresta/cena_floresta.tmx"
     ],

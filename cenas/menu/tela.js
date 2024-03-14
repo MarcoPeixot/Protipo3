@@ -16,7 +16,7 @@ export default class Tela extends Phaser.Scene {
         this.load.image('EUA', 'assets/EUA.png')
         //this.load.audio("audio", './assets/AudioFundo.mp3');
 
-        //Carregando recursos de outras cenas
+        //Carregando recursos da cena predio
         this.load.image('tile_predio', './assets/mapas/predio/Tileset_3_MV.png');
         this.load.image('tile_calcada', './assets/mapas/predio/Tileset_10_MV.png');
         this.load.image('tile_arvores', './assets/mapas/predio/Tileset_21_MV.png');
@@ -36,6 +36,8 @@ export default class Tela extends Phaser.Scene {
         this.load.audio("oceano", "./assets/audios/ocean.mp3")
         this.load.audio("musicaRei", "./assets/audios/entrance.mp3")
         this.load.image("movimentacao", "./assets/teclas_wasd.png");
+
+        //Carregando recursos de outras cenas
     }
 
     create() {
