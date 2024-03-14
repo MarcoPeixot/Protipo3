@@ -15,6 +15,27 @@ export default class Tela extends Phaser.Scene {
         this.load.image('credits', 'assets/Credits.png');
         this.load.image('EUA', 'assets/EUA.png')
         //this.load.audio("audio", './assets/AudioFundo.mp3');
+
+        //Carregando recursos de outras cenas
+        this.load.image('tile_predio', './assets/mapas/predio/Tileset_3_MV.png');
+        this.load.image('tile_calcada', './assets/mapas/predio/Tileset_10_MV.png');
+        this.load.image('tile_arvores', './assets/mapas/predio/Tileset_21_MV.png');
+        this.load.image('tile_estrada', './assets/mapas/predio/Tileset_16_MV.png');
+        this.load.image('tile_cars', './assets/mapas/predio/Tileset_Cars_MV.png');
+        this.load.image('tile_plantas', './assets/mapas/predio/Tileset_8_MV.png');
+        this.load.image('tile_hotdog', './assets/mapas/predio/Tileset_31_MV.png');
+        this.load.tilemapTiledJSON('map_predio', './assets/mapas/predio/map_meta.json');
+        this.load.spritesheet("tyler", "./assets/sprites_personagens/assets_tyler/tyler_armor.png", { frameWidth: 32, frameHeight: 32 });
+        this.load.image("tecla_E", "./assets/tecla.png");
+        this.load.plugin('rexvirtualjoystickplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexvirtualjoystickplugin.min.js', true);
+        this.load.audio('passosConcreto', './assets/audios/concreteFootsteps.mp3');
+        this.load.audio('predioAudio', './assets/audios/Metro.mp3')
+        this.load.audio('entrada', './assets/audios/entrance.mp3');
+        this.load.audio("passos", "./assets/audios/footstep.mp3")
+        this.load.audio("passaros", "./assets/audios/birds.mp3")
+        this.load.audio("oceano", "./assets/audios/ocean.mp3")
+        this.load.audio("musicaRei", "./assets/audios/entrance.mp3")
+        this.load.image("movimentacao", "./assets/teclas_wasd.png");
     }
 
     create() {
