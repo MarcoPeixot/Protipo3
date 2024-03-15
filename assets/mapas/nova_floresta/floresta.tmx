@@ -1622,17 +1622,17 @@
   </tile>
   <tile id="323">
    <properties>
-    <property name="collider" type="bool" value="true"/>
+    <property name="collider" type="bool" value="false"/>
    </properties>
   </tile>
   <tile id="324">
    <properties>
-    <property name="collider" type="bool" value="true"/>
+    <property name="collider" type="bool" value="false"/>
    </properties>
   </tile>
   <tile id="325">
    <properties>
-    <property name="collider" type="bool" value="true"/>
+    <property name="collider" type="bool" value="false"/>
    </properties>
   </tile>
   <tile id="326">
@@ -2117,12 +2117,12 @@
   </tile>
   <tile id="422">
    <properties>
-    <property name="collider" type="bool" value="true"/>
+    <property name="collider" type="bool" value="false"/>
    </properties>
   </tile>
   <tile id="423">
    <properties>
-    <property name="collider" type="bool" value="true"/>
+    <property name="collider" type="bool" value="false"/>
    </properties>
   </tile>
   <tile id="424">
@@ -4094,7 +4094,7 @@
 </data>
  </layer>
  <objectgroup id="2" name="player">
-  <object id="1" name="spawning point player" x="84" y="385.333">
+  <object id="1" name="spawning point player" x="187.179" y="364.489">
    <point/>
   </object>
  </objectgroup>

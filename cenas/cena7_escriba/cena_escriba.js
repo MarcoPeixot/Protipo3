@@ -7,7 +7,7 @@ import Texto from '../../player/texto.js';
 
 var mudarCena = 0;  // Variável global para controlar a mudança de cena
 var i = 0;
-var falas = ["oxente meu"]
+var falas = ["bom dia!"]
 // Define e exporta a classe Scene2
 export default class Escriba extends Phaser.Scene {
     constructor() {
@@ -38,8 +38,8 @@ export default class Escriba extends Phaser.Scene {
 
 
         this.tecla_E = this.add.sprite(this.tyler.x + 90, this.tyler.y - 50, "tecla_e").setOrigin(0.5, 0.5).setVisible(false).setScale(2);
-        this.tecla_E.setInteractive();
-        this.tecla_E.on('pointerup', () => {
+        this.escriba.setInteractive();
+        this.escriba.on('pointerup', () => {
             // Iniciar a cena principal quando o botão "play" é clicado
             this.caixaDialogo.setVisible(true)
             this.textoEscriba.setVisible(true)
@@ -53,6 +53,7 @@ export default class Escriba extends Phaser.Scene {
         this.caixaDialogo.setVisible(false)
         this.textoEscriba = this.add.text(this.escriba.x + 80, this.escriba.y + 80, '', { fontFamily: 'Arial', fontSize: 16, color: 'black' }).setOrigin(0.5);
 
+        this.tecla_sinalizcao = this.add.sprite(this.escriba.x, this.escriba.y - 50, "tecla_sinalizacao").setOrigin(0.5, 0.5).setVisible(true).setScale(2);
     }
 
     criarMapa() {

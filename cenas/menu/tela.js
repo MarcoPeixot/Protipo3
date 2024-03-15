@@ -1,3 +1,4 @@
+
 export default class Tela extends Phaser.Scene {
     constructor() {
         super({
@@ -16,6 +17,7 @@ export default class Tela extends Phaser.Scene {
 
         //Carregando recursos para todas as cenas
         this.load.image("tecla_e", "./assets/tecla_e_pixel.png");
+        this.load.image("tecla_sinalizacao", "./assets/tecla_sinalizacao.png");
         this.load.image('caixaDialogo', './assets/caixaDialogo.png');
 
 

@@ -6,7 +6,14 @@ import Controls from '../../player/controles.js'; // Importa a classe Controls
 import Texto from '../../player/texto.js';          // Importa o módulo de texto
 
 var i = 0
-var falas = ["Olá, seja bem vindo", "vou precisar da sua ajuda","é crucial que você esteja comigo\nnesse momento", "preciso que selecione apenas os\nmelhores guerreiros", "vamos nessa", " "]
+var falas = ["Tyler, você chegou! Que maraviha!", " Lhe chamei aqui pois preciso de sua ajuda...", 
+"Um grande mal que trará muita dor e destruição\nse aproxima do reino..", "Por isso preciso de ajuda para criar\nalianças com exércitos das terras próximas. ",
+"É muito importante que, idependente do\nexército que lute ao nosso lado,\nele esteja de acordo com os principios deste reino.", 
+"Assim, não podemos lutar junto a generais que\nescravizem ou usem a força para subjulgar outros\nreinos e povoados.", "Precisamos de aliados capazes de respeitar direitos\nbásicos de todos os seres inocentes que achemos\npelo caminho.", 
+"Também não podemos manter relações com tropas\nque destruam as florestas e bosques da região", 
+"Também temo que o inimigo saiba que nos\n preparamos para enfrentá-lo", "por isso peço que envie um pacto de silêncio\na todos os exércitos que você entre em contato.", 
+"Assim podemos nos proteger e proteger essas\ninformações tão cruciais para a batalha\n que teremos.", "Agora vá, escreva uma carta para os \ngenerais dos exércitos mais fortes da região.", "Escolha as melhores perguntas\n e não se esqueça dos valores do nosso reino...", " "]
+var falas2 = ["Obrigado, Tyler!", "Pedirei que sejam feitas cópias desta\ncarta e as enviarei para os generais da região.", "Venha amanhã para analisar\no que obtivermos de resposta. ", " "]
 
 var mudarCena = 0;
 
@@ -38,8 +45,36 @@ export default class Scene3 extends Phaser.Scene {
         this.caixaDialogo = this.add.image(this.tyler.x, this.tyler.y + 40, "caixaDialogo").setScale(0.6)
         this.caixaDialogo.setVisible(false)
         this.controls.create();
-        this.tecla_E = this.add.sprite(this.tyler.x, this.tyler.y - 40, "tecla_e").setOrigin(0.5, 0.5).setVisible(false).setScale(2);
         this.criarNpc();
+        this.tecla_E = this.add.sprite(this.tyler.x, this.tyler.y - 40, "tecla_e").setOrigin(0.5, 0.5).setVisible(false).setScale(2);
+        this.rei.setInteractive();
+        this.rei.on('pointerup', () => {
+            // Iniciar a cena principal quando o botão "play" é clicado
+            if(mudarCena == 0){
+            this.caixaDialogo.setVisible(true)
+            this.textoRei.setVisible(true)
+            Texto.showTextLetterByLetter(this, falas[i], this.textoRei);
+            i++
+            if (i === falas.length) {
+                this.transitionToScene2("minigame1")
+                i = 0;
+                mudarCena = 1
+            }
+        }
+        else {
+            this.caixaDialogo.setVisible(true)
+            this.textoRei.setVisible(true)
+            Texto.showTextLetterByLetter(this, falas2[i], this.textoRei);
+            i++
+            if (i === falas2.length) {
+                this.transitionToScene2("minigame2")
+                i = 0;
+            }
+        }
+        });
+        
+        
+        this.tecla_sinalizcao = this.add.sprite(this.rei.x, this.rei.y - 50, "tecla_sinalizacao").setOrigin(0.5, 0.5).setVisible(true).setScale(2);
     }
 
     criarMapa() {
@@ -100,7 +135,7 @@ export default class Scene3 extends Phaser.Scene {
         this.rei = this.physics.add.sprite(spawnPointNpc.x, spawnPointNpc.y, "rei").setScale(1.2)
 
         // Configuração do texto associado ao NPC Vanessa
-        this.textoRei = this.add.text(this.tyler.x + 80, this.tyler.y + 80, '', { fontFamily: 'Arial', fontSize: 16, color: 'black' }).setOrigin(0.5);
+        this.textoRei = this.add.text(this.tyler.x + 80, this.tyler.y + 80, '', { fontFamily: 'Arial', fontSize: 10, color: 'black' }).setOrigin(0.5);
     }
 
     update() {
@@ -123,23 +158,33 @@ export default class Scene3 extends Phaser.Scene {
 
         if (overlapping) {
             this.tecla_E.setVisible(true);
-
+            if(mudarCena === 0){
             // Verifica se a tecla "E" foi pressionada
             if (Phaser.Input.Keyboard.JustDown(this.controls.interacao)) {
                 this.caixaDialogo.setVisible(true)
                 Texto.showTextLetterByLetter(this, falas[i], this.textoRei);
                 i++
                 if (i === falas.length) {
+                    i = 0
+                    mudarCena = 1
                     this.transitionToScene2("minigame1")
                 }
             }
-        } else {
-            this.tecla_E.setVisible(false);
+    }
+    else{
+    if (Phaser.Input.Keyboard.JustDown(this.controls.interacao)) {
+        this.caixaDialogo.setVisible(true)
+        Texto.showTextLetterByLetter(this, falas2[i], this.textoRei);
+        i++
+        if (i === falas2.length) {
+            this.transitionToScene2("minigame2")
         }
-
-        if(i > 0){
-            this.tyler.setVelocity(0)
-        }
+    }
+    }
+    }
+    else {
+        this.tecla_E.setVisible(false);
+    }
 
         if (this.passar.hasTileAtWorldXY(this.tyler.body.x, this.tyler.body.y)) {
             this.transitionToScene2("cena_escriba")

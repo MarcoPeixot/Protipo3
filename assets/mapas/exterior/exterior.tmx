@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="27" height="15" tilewidth="32" tileheight="32" infinite="0" nextlayerid="7" nextobjectid="4">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="27" height="15" tilewidth="32" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="5">
  <editorsettings>
   <export target="exterior.json" format="json"/>
  </editorsettings>
@@ -2100,6 +2100,11 @@
  </objectgroup>
  <objectgroup id="6" name="npc">
   <object id="3" name="spawning point npc" x="722.129" y="230.775">
+   <point/>
+  </object>
+ </objectgroup>
+ <objectgroup id="7" name="npc2">
+  <object id="4" name="spawning point npc2" x="459.846" y="178.829">
    <point/>
   </object>
  </objectgroup>

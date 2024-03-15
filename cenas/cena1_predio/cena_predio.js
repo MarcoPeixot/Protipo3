@@ -7,7 +7,7 @@ import Texto from '../../player/texto.js';          // Importa o módulo de text
 
 
 
-var falas = ["Olá, seja bem-vindo ao nosso jogo. \n Entre no prédio para  \n contratar fornecedores! \n Para começar entre no prédio. "];
+var falas = ["Olá, seja bem-vindo ao nosso jogo. \nEntre no prédio para  \ncontratar fornecedores! \nPara começar entre no prédio. "];
 
 export default class Scene1 extends Phaser.Scene {
     constructor() {
@@ -35,10 +35,10 @@ export default class Scene1 extends Phaser.Scene {
 
         this.tecla_E = this.add.sprite(this.tyler.x + 90, this.tyler.y - 50, "movimentacao").setOrigin(0.5, 0.5).setVisible(true).setScale(2);
 
-        this.caixaDialogo = this.add.image(350, 600, "caixaDialogo").setScale(0.9)
+        this.caixaDialogo = this.add.image(this.tyler.x, this.tyler.y + 80, "caixaDialogo").setScale(0.9)
         this.caixaDialogo.setVisible(true)
 
-        this.textoInicio = this.add.text(190, 570, { fontFamily: 'Arial', fontSize: 16, color: 'black' })
+        this.textoInicio = this.add.text(this.tyler.x/2, this.tyler.y /2, { fontFamily: 'Arial', fontSize: 12, color: 'black' })
 
         Texto.showTextLetterByLetter(this, falas[0], this.textoInicio)
 
@@ -117,10 +117,10 @@ export default class Scene1 extends Phaser.Scene {
     update() {
 
         this.control.update();
+        this.caixaDialogo.setPosition(this.tyler.body.x + 30, this.tyler.body.y + 120);
+        this.textoInicio.setPosition(this.tyler.x - 150, this.tyler.y + 70);
         if ((this.tyler.body.velocity.x !== 0 || this.tyler.body.velocity.y !== 0) && !this.passosConcreto.isPlaying) {
             this.passosConcreto.play(); // Reproduz o som dos passos
-            this.caixaDialogo.setVisible(false);
-            this.textoInicio.setVisible(false);
         } else if (this.tyler.body.velocity.x === 0 && this.tyler.body.velocity.y === 0 && this.passosConcreto.isPlaying) {
             this.passosConcreto.stop(); // Para o som dos passos se o jogador não estiver se movendo
         }

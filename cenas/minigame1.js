@@ -1,9 +1,11 @@
-var xa = 0
-var ya = 0
-var za = 0
-var wa = 0
-var va = 0
-var qa = 0
+//definindo váriaveis para saber se o pergaminho está selecionado ou não.
+var selecionado1 = 0;
+var selecionado2 = 0;
+var selecionado3 = 0;
+var selecionado4 = 0;
+var selecionado5 = 0;
+var selecionado6 = 0;
+//definindo váriaveis para quando o pergaminho for clicado.
 var clicou1 = false;
 var clicou2 = false;
 var clicou3 = false;
@@ -11,6 +13,7 @@ var clicou4 = false;
 var clicou5 = false;
 var clicou9 = false;
 
+//criando a classe "minigame1" que é uma extensão da classe "Phaser.Scene".
 export default class Minigame1 extends Phaser.Scene {
     constructor() {
         super({
@@ -18,44 +21,42 @@ export default class Minigame1 extends Phaser.Scene {
         });
     }
 
-    //Carrega as imagens do jogo
+    // carregando imagens.
     preload() {
-        //this.load.image('fundo', 'assets/fundominigame.png');
+        
         this.load.image('fundo', 'assets/fundo.png');
         this.load.image('pergaminho1', 'assets/pergaminho1.png');
         this.load.image('pergaminho2', 'assets/pergaminho2.png');
         this.load.image('pergaminho3', 'assets/pergaminho3.png');
         this.load.image('pergaminho4', 'assets/pergaminho4.png');
-        this.load.image('pergaminho5', 'assets/pergaminho5.png')
-        this.load.image('pergaminho6', 'assets/pergaminho6.png')
-        this.load.image('pergaminho7', 'assets/pergaminho7.png')
-        this.load.image('pergaminho8', 'assets/pergaminho8.png')
-        this.load.image('pergaminho9', 'assets/pergaminho9.png')
+        this.load.image('pergaminho5', 'assets/pergaminho5.png');
+        this.load.image('pergaminho6', 'assets/pergaminho6.png');
+        this.load.image('pergaminho7', 'assets/pergaminho7.png');
+        this.load.image('pergaminho8', 'assets/pergaminho8.png');
+        this.load.image('pergaminho9', 'assets/pergaminho9.png');
         this.load.image('confirmar', 'assets/confirmar.png');
-        //this.load.spritesheet('tyler', 'assets/Persona-principal.png', { frameWidth: 32, frameHeight: 32 });
-    }
     
+    }
+    // criando imagens no jogo.
     create() {
-        //cria a imagem de fundo
-       // this.add.image(0, 0, 'fundo').setScale(1);
         this.add.image(400, 300, 'fundo').setScale(3);
-        var pergaminho1 = this.add.image(300, 110, 'pergaminho1').setScale(0.25);
-        var pergaminho2 = this.add.image(700, 110, 'pergaminho2').setScale(0.25);
-        var pergaminho3 = this.add.image(1000, 110, 'pergaminho3').setScale(0.25);
-        var pergaminho4 = this.add.image(300, 350, 'pergaminho4').setScale(0.25);
-        var pergaminho5 = this.add.image(700, 350, 'pergaminho5').setScale(0.25);
-        var pergaminho6 = this.add.image(1000, 350, 'pergaminho6').setScale(0.25);
-        var pergaminho7 = this.add.image(300, 580, 'pergaminho7').setScale(0.25);
-        var pergaminho8 = this.add.image(700, 580, 'pergaminho8').setScale(0.25);
-        var pergaminho9 = this.add.image(1000, 580, 'pergaminho9').setScale(0.25);
-        
-        var confirmar = this.add.image(1200, 700, 'confirmar').setScale(0.3);
+        var pergaminho1 = this.add.image(320, 115, 'pergaminho1').setScale(0.25).setTint(0x808080);
+        var pergaminho2 = this.add.image(640, 115, 'pergaminho2').setScale(0.25).setTint(0x808080);
+        var pergaminho3 = this.add.image(960, 115, 'pergaminho3').setScale(0.25).setTint(0x808080);
+        var pergaminho4 = this.add.image(320, 360, 'pergaminho4').setScale(0.25).setTint(0x808080);
+        var pergaminho5 = this.add.image(640, 360, 'pergaminho5').setScale(0.25).setTint(0x808080);
+        var pergaminho6 = this.add.image(960, 360, 'pergaminho6').setScale(0.25).setTint(0x808080);
+        var pergaminho7 = this.add.image(320, 605, 'pergaminho7').setScale(0.25).setTint(0x808080);
+        var pergaminho8 = this.add.image(640, 605, 'pergaminho8').setScale(0.25).setTint(0x808080);
+        var pergaminho9 = this.add.image(960, 605, 'pergaminho9').setScale(0.25).setTint(0x808080);
+        this.caixaDialogo = this.add.image(600, 650, "caixaDialogo").setScale(2)
+        this.caixaDialogo.setVisible(false)
+        this.textoAjuda = this.add.text(400, 650, 'Talvez você tenha feito más escolhas', { fontFamily: 'Arial', fontSize: 24, color: 'black' });
+        this.textoAjuda.setVisible(false)
+        var confirmar = this.add.image(1180, 670, 'confirmar').setScale(0.7);
+        var confirmar2 = this.add.image(900, 670, 'confirmar').setScale(0.5).setVisible(false);
 
-        // Adiciona a colisão entre o personagem e as plataforma
-        // Cria o cursor de teclado
-        //this.cursor = this.input.keyboard.createCursorKeys();
-        
-        // Adiciona interatividade para as pedras
+        //adicionando interação ao clicar nos pergaminhos.
         pergaminho1.setInteractive();
         pergaminho1.on('pointerdown', () => {
             this.clicado(pergaminho1, 1);
@@ -101,17 +102,28 @@ export default class Minigame1 extends Phaser.Scene {
             this.clicado(pergaminho9, 9);
         });
 
+
+        // adicionando interação ao clicar no botão de confirmar.
         confirmar.setInteractive();
         confirmar.on('pointerdown', () => {
-            console.log(xa + ya + za + wa + va + qa)
-            confirmar.setScale(0.4)
-            if((xa + ya + za + wa + va + qa) === 47){
-              //  this.scene.start('Scene');
-              this.transitionToScene("minigame2")
+            
+        // condição que verifica se a soma das variáveis selecionado1, selecionado2, etc. é igual a 47.
+            if((selecionado1 + selecionado2 + selecionado3 + selecionado4 + selecionado5 + selecionado6) === 47){
+            // se a soma for igual a 47, avança para a cena "minigame2"
+              this.transitionToScene("cena_castelo")
             }
+            // se a soma for diferente de 47, nada acontece (por enquanto)
             else{
-                console.log('deu errado');
+                this.caixaDialogo.setVisible(true)
+                this.textoAjuda.setVisible(true)
+                confirmar2.setVisible(true)
+                confirmar2.setInteractive();
             }
+        });
+        confirmar2.on('pointerdown', () => {
+            this.caixaDialogo.setVisible(false)
+            this.textoAjuda.setVisible(false)
+            confirmar2.setVisible(false)
         });
 
     }
@@ -119,71 +131,75 @@ export default class Minigame1 extends Phaser.Scene {
     update() {
     
     }
-
-    //função que troca de cena
+    // função para mudar de cena.
     transitionToScene(cena) {
-        this.scene.start(cena); // Inicia a cena 1
+        this.scene.start(cena); 
     }
-
+    // função para restaurar a cor original do pergaminho quando ele é desselecionado)
     clicado(pergaminho, num) {
+        if (pergaminho.originalTint === undefined) {
+    
+            pergaminho.originalTint = pergaminho.tintTopLeft;
+        }
+        // verifica qual pergaminho foi clicado e altera seu estado de seleção
         if (num === 1) {
             if (clicou1) {
-                pergaminho.setScale(0.29);
-                xa = 1;
+                pergaminho.setTint(0xFFFFFF); 
+                selecionado1 = 1;
                 clicou1 = false;
             } else {
-                pergaminho.setScale(0.25);
-                xa = 0;
+                pergaminho.setTint(pergaminho.originalTint);
+                selecionado1 = 0;
                 clicou1 = true;
             }
         } else if (num === 2) {
             if (clicou2) {
-                pergaminho.setScale(0.29);
-                ya = 2;
+                pergaminho.setTint(0xFFFFFF);
+                selecionado2 = 2;
                 clicou2 = false;
             } else {
-                pergaminho.setScale(0.25);
-                ya = 0;
+                pergaminho.setTint(pergaminho.originalTint);
+                selecionado2 = 0;
                 clicou2 = true;
             }
         } else if (num === 3) {
             if (clicou3) {
-                pergaminho.setScale(0.29);
-                za = 4;
+                pergaminho.setTint(0xFFFFFF);
+                selecionado3 = 4;
                 clicou3 = false;
             } else {
-                pergaminho.setScale(0.25);
-                za = 0;
+                pergaminho.setTint(pergaminho.originalTint);
+                selecionado3 = 0;
                 clicou3 = true;
             }
         } else if (num === 4) {
                 if (clicou4) {
-                    pergaminho.setScale(0.29);
-                    wa = 8;
+                    pergaminho.setTint(0xFFFFFF);
+                    selecionado4 = 8;
                     clicou4 = false;
                 } else {
-                    pergaminho.setScale(0.25);
-                    wa = 0;
+                    pergaminho.setTint(pergaminho.originalTint);
+                    selecionado4 = 0;
                     clicou4 = true;
                 }
         } else if (num >=5 && num <= 8) {
             if (clicou5) {
-                pergaminho.setScale(0.29);
-                va = 16;
+                pergaminho.setTint(0xFFFFFF);
+                selecionado5 = 16;
                 clicou5 = false;
             } else {
-                pergaminho.setScale(0.25);
-                va = 0;
+                pergaminho.setTint(pergaminho.originalTint);
+                selecionado5 = 0;
                 clicou5 = true;
             }
         } else if (num === 9) {
             if (clicou9) {
-                pergaminho.setScale(0.29);
-                qa = 32;
+                pergaminho.setTint(0xFFFFFF);
+                selecionado6 = 32;
                 clicou9 = false;
             } else {
-                pergaminho.setScale(0.25);
-                qa = 0;
+                pergaminho.setTint(pergaminho.originalTint);
+                selecionado6 = 0;
                 clicou9 = true;
             }
         }

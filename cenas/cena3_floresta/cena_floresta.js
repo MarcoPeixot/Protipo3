@@ -7,7 +7,7 @@ import Texto from '../../player/texto.js';          // Importa o módulo de text
 
 var mudarCena = 0;  // Variável global para controlar a mudança de cena
 var i = 0;
-var falas = ["Ache o caminho para o castelo!"];
+var falas = ["Ache o caminho para o castelo!", "Siga em frente!"];
 
 export default class MainScene extends Phaser.Scene {
     constructor() {
@@ -59,7 +59,6 @@ export default class MainScene extends Phaser.Scene {
         this.caixaDialogo.setVisible(false)
 
         this.texto = this.add.text(this.tyler.x, this.tyler.y + 50, '', { fontFamily: 'Arial', fontSize: 13, color: 'black' }).setOrigin(0.5);
-
     }
 
     criarMapa() {
@@ -75,9 +74,13 @@ export default class MainScene extends Phaser.Scene {
     }
 
     criarPersonagem() {
+        const spawnPoint = this.map.findObject(
+            "player",
+            (objects) => objects.name === "spawning point player"
+        );
         // Criação do jogador
         if (mudarCena === 0) {
-            this.tyler = new Player(this, 100, 400, 'tyler', 1.2);  // Criação do jogador em uma posição específica
+            this.tyler = new Player(this, spawnPoint.x, spawnPoint.y, 'tyler', 1.2);  // Criação do jogador em uma posição específica
             this.controls = new Controls(this, this.tyler);     // Criação dos controles associados ao jogador
 
         }

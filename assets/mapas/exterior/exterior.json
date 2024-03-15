@@ -140,8 +140,31 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":722.128917800118,
-                 "y":230.774689532821
+                 "x":722.129,
+                 "y":230.775
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":7,
+         "name":"npc2",
+         "objects":[
+                {
+                 "height":0,
+                 "id":4,
+                 "name":"spawning point npc2",
+                 "point":true,
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":459.846244825547,
+                 "y":178.829095209935
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -149,8 +172,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":7,
- "nextobjectid":4,
+ "nextlayerid":8,
+ "nextobjectid":5,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.10.2",
