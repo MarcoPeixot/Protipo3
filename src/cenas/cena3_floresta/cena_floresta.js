@@ -7,7 +7,7 @@ import Texto from '../../player/texto.js';          // Importa o módulo de text
 
 var mudarCena = 0;  // Variável global para controlar a mudança de cena
 var i = 0;
-var falas = ["Ache o caminho para o castelo!"];
+var falas = ["Ache o caminho para o castelo!", "Siga em frente!"];
 
 export default class MainScene extends Phaser.Scene {
     constructor() {
@@ -41,8 +41,10 @@ export default class MainScene extends Phaser.Scene {
         this.tecla_E = this.add.sprite(this.tyler.x, this.tyler.y - 40, "tecla_e").setOrigin(0.5, 0.5).setVisible(false).setScale(2);
         this.tecla_E.setInteractive();
         this.tecla_E.on('pointerup', () => {
+            this.caixaDialogo.setVisible(true)
+            this.texto.setVisible(true)
             // Iniciar a cena principal quando o botão "play" é clicado
-            Texto.showTextLetterByLetter(this, falas[i], this.textoVanessa);
+            Texto.showTextLetterByLetter(this, falas[i], this.texto);
             i++;
             if (i === falas.length) {
                 i = 0;
@@ -57,7 +59,6 @@ export default class MainScene extends Phaser.Scene {
         this.caixaDialogo.setVisible(false)
 
         this.texto = this.add.text(this.tyler.x, this.tyler.y + 50, '', { fontFamily: 'Arial', fontSize: 13, color: 'black' }).setOrigin(0.5);
-
     }
 
     criarMapa() {
@@ -73,9 +74,13 @@ export default class MainScene extends Phaser.Scene {
     }
 
     criarPersonagem() {
+        const spawnPoint = this.map.findObject(
+            "player",
+            (objects) => objects.name === "spawning point player"
+        );
         // Criação do jogador
         if (mudarCena === 0) {
-            this.tyler = new Player(this, 100, 400, 'tyler', 1.2);  // Criação do jogador em uma posição específica
+            this.tyler = new Player(this, spawnPoint.x, spawnPoint.y, 'tyler', 1.2);  // Criação do jogador em uma posição específica
             this.controls = new Controls(this, this.tyler);     // Criação dos controles associados ao jogador
 
         }

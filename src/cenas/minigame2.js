@@ -7,19 +7,31 @@ export default class Minigame2 extends Phaser.Scene {
 
     //Carrega as imagens do jogo
     preload() {
-        this.load.image('floresta', 'assets/fundo.png');
-        this.load.image('papel_celeste', 'assets/Perfis/perfil_celeste.png');
-        this.load.image('botao', 'assets/Play.png')
+        this.load.image('fundo', 'assets/fundo.png');
+        this.load.image('celeste', 'assets/Perfis/perfil_celeste.png');
+        this.load.image('gizmo', 'assets/Perfis/perfil_gizmo.png');
+        this.load.image('morgana', 'assets/Perfis/perfil_morgana.png');
+        this.load.image('romeo', 'assets/Perfis/perfil_romeo.png');
+        this.load.image('ruivo', 'assets/Perfis/perfil_ruivo.png');
+        this.load.image('aysla', 'assets/Perfis/perfil_aysla.png');
+
+        this.load.image('botao', 'assets/Perfis/aprovado.png');
+        this.load.image('botaox', 'assets/Perfis/errado.png');
     }
     
     create() {
         //cria a imagem de fundo
-        this.add.image(0, 0, 'floresta').setOrigin(0).setScale(1.5);
-        var pedra1 = this.add.image(550, 340, 'papel_celeste').setScale(0.4).setVisible(true);
-        var pedra2 = this.add.image(400, 400, 'papel').setScale(0.6).setVisible(false);
-        var pedra3 = this.add.image(400, 400, 'papel').setScale(0.5).setVisible(false);
-        var verdadeiro = this.add.image(500, 500, 'botao').setScale(0.2);
-        var falso = this.add.image(600, 500, 'botao').setScale(0.2);
+        this.add.image(0, 0, 'fundo').setOrigin(0).setScale(1.5);
+        var celeste = this.add.image(550, 340, 'celeste').setScale(0.4).setVisible(true);
+        var gizmo = this.add.image(550, 340, 'gizmo').setScale(0.4).setVisible(false);
+        var morgana = this.add.image(560, 330, 'morgana').setScale(0.4).setVisible(false);
+        var romeo = this.add.image(560, 330, 'romeo').setScale(0.4).setVisible(false);
+        var ruivo = this.add.image(560, 330, 'ruivo').setScale(0.4).setVisible(false);
+        var aysla = this.add.image(560, 330, 'aysla').setScale(0.4).setVisible(false);
+
+
+        var verdadeiro = this.add.image(470, 590, 'botao').setScale(3.8)
+        var falso = this.add.image(680, 590, 'botaox').setScale(3.8)
 
         // Adiciona a colisão entre o personagem e as plataforma
         // Cria o cursor de teclado
@@ -30,16 +42,39 @@ export default class Minigame2 extends Phaser.Scene {
         verdadeiro.on('pointerdown', () => {
             switch (i) {
                 case 0:
-                    pedra2.setVisible(true);
-                    pedra1.destroy();
+                    gizmo.setVisible(true);
+                    celeste.destroy();
                     i++
                     break;
                 case 1:
-                    console.log("você errou")
+                    morgana.setVisible(true);
+                    gizmo.destroy();
+                    i++
                     break;
+                    
                 case 2:
                     console.log("voce errou")
                     break;
+                    
+                    
+                case 3:
+                    ruivo.setVisible(true);
+                    romeo.destroy();
+                    i++
+                    break;
+                    
+                case 4: 
+                console.log("voce errou")
+                break;
+                case 5: 
+                this.scene.start('cena_castelo')
+        
+                
+                    
+                    
+
+
+
             }
         });
 
@@ -50,15 +85,33 @@ export default class Minigame2 extends Phaser.Scene {
                     console.log("voce errou")
                     break;
                 case 1:
-                    pedra3.setVisible(true);
-                    pedra2.destroy();
-                    i++
+                    console.log("voce errou")
                     break;
                 case 2:
-                    pedra3.destroy();
+                    romeo.setVisible(true);
+                    morgana.destroy();
                     i++
                     break;
+                case 3:
+                    console.log("voce errou")
+                    break;
+                     
+                case 4:
+                    aysla.setVisible(true);
+                    ruivo.destroy();
+                    i++
+                    break;
+                    
+               
+
+
+                    
+                    
+                     
+
             }
+
+        
         });
 
     }
