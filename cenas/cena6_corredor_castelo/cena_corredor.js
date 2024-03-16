@@ -3,8 +3,9 @@ import Animacao from '../../player/animation.js'; // Importa um módulo de geren
 import Player from '../../player/player.js'; // Importa a classe Player
 import Camera from '../../player/camera.js'; // Importa a classe Camera
 import Controls from '../../player/controles.js'; // Importa a classe Controls
-import Texto from '../../player/texto.js';          // Importa o módulo de texto
+import Texto from '../../player/texto.js'; // Importa o módulo de texto
 
+//Criando variáveis da cena
 var mudarCena = 0;
 var i = 0;
 var falas = ["Esse parece ser o emblema do reino!"];
@@ -21,7 +22,6 @@ export default class Corredor extends Phaser.Scene {
         this.load.tilemapTiledJSON('map_corredor', './assets/mapas/mapa_castelo_corredor/castelo_corredor.json');
         this.load.image('assets', './assets/mapas/mapa_castelo_corredor/mapa_final_castelo.png');
         this.load.spritesheet("npc1", "./assets/sprites_personagens/assets_npc1/npc1.png", { frameWidth: 32, frameHeight: 32 });
-        //this.load.plugin('rexvirtualjoystickplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexvirtualjoystickplugin.min.js', true);
     }
 
     create() {
@@ -36,8 +36,6 @@ export default class Corredor extends Phaser.Scene {
         this.criarMapa();
         this.criarPersonagem();
         this.controls.create();
-        
-
         
         this.caixaDialogo = this.add.image(this.tyler.x, this.tyler.y + 50, "caixaDialogo").setScale(0.5)
         this.caixaDialogo.setVisible(false)
@@ -99,12 +97,12 @@ export default class Corredor extends Phaser.Scene {
         );
 
         if (mudarCena === 0) {
-            this.tyler = new Player(this, spawnPoint.x, spawnPoint.y, 'tyler', 1.2);
+            this.tyler = new Player(this, spawnPoint.x, spawnPoint.y, 'tyler_armor', 1.2);
             this.controls = new Controls(this, this.tyler);
         }
 
         if (mudarCena === 1) {
-            this.tyler = new Player(this, spawnPointVoltar.x, spawnPointVoltar.y, 'tyler', 1.2);
+            this.tyler = new Player(this, spawnPointVoltar.x, spawnPointVoltar.y, 'tyler_armor', 1.2);
             this.controls = new Controls(this, this.tyler);
         }
 
@@ -119,9 +117,7 @@ export default class Corredor extends Phaser.Scene {
         this.physics.add.collider(this.tyler, this.interacao);
 
         // Cria as animações utilizando o Animacao
-        Animacao.createAnimations(this, 'tyler');
-
-
+        Animacao.TylerArmorcreateAnimations(this);    
     }
     criarNpc() {
         // Configuração inicial do NPC
@@ -130,11 +126,8 @@ export default class Corredor extends Phaser.Scene {
             (objects) => objects.name === "spawning point npc1"
         );
 
-        // Criação do NPC Vanessa
+        // Criação do NPC
         this.npc = this.physics.add.sprite(spawnPointNpc.x, spawnPointNpc.y, "npc1").setScale(1.2)
-
-        // Configuração do texto associado ao NPC Vanessa
-        //this.textoRei = this.add.text(this.rei.x, this.rei.y - 40, '', { fontFamily: 'Arial', fontSize: 16, color: '#ffffff' }).setOrigin(0.5);
     }
 
     update() {
@@ -199,11 +192,6 @@ export default class Corredor extends Phaser.Scene {
                 }
             }
         }
-        
-      
-        
-
-
     }
 
     transitionToScene2(cena) {

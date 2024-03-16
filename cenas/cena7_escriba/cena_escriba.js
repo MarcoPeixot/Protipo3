@@ -5,9 +5,11 @@ import Camera from '../../player/camera.js'; // Importa a classe Camera
 import Controls from '../../player/controles.js'; // Importa a classe Controls
 import Texto from '../../player/texto.js';
 
+//Variáveis para o jogo
 var mudarCena = 0;  // Variável global para controlar a mudança de cena
-var i = 0;
-var falas = ["bom dia!"]
+var i = 0; // Variável para controlar o index
+var falas = ["bom dia!"] //Array para as falas
+
 // Define e exporta a classe Scene2
 export default class Escriba extends Phaser.Scene {
     constructor() {
@@ -21,11 +23,7 @@ export default class Escriba extends Phaser.Scene {
         this.load.image("tiles_escriba", "./assets/mapas/escriba/cena_escriba.png");
         this.load.tilemapTiledJSON("map_escriba", "./assets/mapas/escriba/escriba.json");
         this.load.spritesheet("escriba", "./assets/sprites_personagens/assets_escriba/escriba.png", { frameWidth: 32, frameHeight: 32 });
-        //this.load.spritesheet("tyler", "./assets/sprites_personagens/assets_tyler/tyler_armor.png", { frameWidth: 32, frameHeight: 32 });
-        //this.load.plugin('rexvirtualjoystickplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexvirtualjoystickplugin.min.js', true);
     }
-
-
 
     // Cria os elementos do jogo
     create() {
@@ -35,7 +33,6 @@ export default class Escriba extends Phaser.Scene {
         this.criarPersonagem();
         this.control.create();
         this.criarNpc()
-
 
         this.tecla_E = this.add.sprite(this.tyler.x + 90, this.tyler.y - 50, "tecla_e").setOrigin(0.5, 0.5).setVisible(false).setScale(2);
         this.escriba.setInteractive();
@@ -74,9 +71,8 @@ export default class Escriba extends Phaser.Scene {
             (objects) => objects.name === "spawning point player"
         );
 
-
         if (mudarCena === 0) {
-            this.tyler = new Player(this, spawnPoint.x, spawnPoint.y, 'tyler', 1.2);  // Criação do jogador em uma posição específica
+            this.tyler = new Player(this, spawnPoint.x, spawnPoint.y, 'tyler_armor', 1.2);  // Criação do jogador em uma posição específica
             this.control = new Controls(this, this.tyler);     // Criação dos controles associados ao jogador
         }
 
@@ -85,7 +81,7 @@ export default class Escriba extends Phaser.Scene {
 
 
         // Cria as animações utilizando o Animacao
-        Animacao.createAnimations(this, 'tyler');
+        Animacao.TylerArmorcreateAnimations(this);
 
         // Cria o jogador, câmera e controles
         this.camera = new Camera(this, this.tyler, this.map);
@@ -100,17 +96,14 @@ export default class Escriba extends Phaser.Scene {
             (objects) => objects.name === "spawning point escriba"
         );
 
-        // Criação do NPC Vanessa
+        // Criação do NPC Escriba
         this.escriba = this.physics.add.sprite(spawnPointNpc.x, spawnPointNpc.y, "escriba", 1).setScale(1.2)
-
-        // Configuração do texto associado ao NPC Vanessa
-
     }
 
 
     // Atualiza o jogo
     update() {
-
+        //Setando as posições dos elementos
         this.tecla_E.setPosition(this.tyler.x, this.tyler.y - 40);
         this.caixaDialogo.setPosition(this.tyler.x, this.tyler.y + 55);
         this.textoEscriba.setPosition(this.tyler.x, this.tyler.y + 55);
@@ -127,6 +120,7 @@ export default class Escriba extends Phaser.Scene {
             this.transitionToScene1("cena_castelo")
         }
 
+        //Constante para se há sobreposição do tyler no escriba
         const overlapping = this.physics.overlap(this.tyler, this.escriba);
 
         if (overlapping) {
@@ -150,8 +144,8 @@ export default class Escriba extends Phaser.Scene {
         }
     }
 
-    // Método para transição para a cena 1
+    // Método para transição para a cena 
     transitionToScene1(cena) {
-        this.scene.start(cena); // Inicia a cena 1
+        this.scene.start(cena); 
     }
 }

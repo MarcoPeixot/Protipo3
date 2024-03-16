@@ -8,19 +8,21 @@ export default class Tela extends Phaser.Scene {
 
     preload() {
         // Carrega os recursos necessários
-        this.load.image('tela', 'assets/tela_inicial_2.png');
-        this.load.image('play', 'assets/play_btn.png');
-        this.load.image('brasil', 'assets/brasil.jpg');
-        this.load.image('credits', 'assets/Credits.png');
-        this.load.image('EUA', 'assets/EUA.png')
-        //this.load.audio("audio", './assets/AudioFundo.mp3');
+        this.load.image('tela', 'assets/elementosJogo/tela_inicial_2.png');
+        this.load.image('play', 'assets/elementosJogo/play_btn.png');
+        this.load.image('brasil', 'assets/elementosJogo/brasil.jpg');
+        this.load.image('credits', 'assets/elementosJogo/Credits.png');
+        this.load.image('EUA', 'assets/elementosJogo/EUA.png')
 
         //Carregando recursos para todas as cenas
-        this.load.image("tecla_e", "./assets/tecla_e_pixel.png");
-        this.load.image("tecla_sinalizacao", "./assets/tecla_sinalizacao.png");
-        this.load.image('caixaDialogo', './assets/caixaDialogo.png');
-
-
+        this.load.image("tecla_e", "./assets/elementosJogo/tecla_e_pixel.png");
+        this.load.image("tecla_sinalizacao", "./assets/elementosJogo/tecla_sinalizacao.png");
+        this.load.image('caixaDialogo', './assets/elementosJogo/caixaDialogo.png');
+        this.load.plugin('rexvirtualjoystickplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexvirtualjoystickplugin.min.js', true);
+        this.load.spritesheet("tyler_armor", "./assets/sprites_personagens/assets_tyler/tyler_armor.png", { frameWidth: 32, frameHeight: 32 });
+        this.load.spritesheet("vanessa", "./assets/sprites_personagens/assets_vanessa/vanessa_lado.png", { frameWidth: 32, frameHeight: 32 });
+        this.load.spritesheet("tyler_normal", "./assets/sprites_personagens/assets_tyler/novo_persona.png", { frameWidth: 32, frameHeight: 32 });
+        
         //Carregando recursos da cena predio
         this.load.image('tile_predio', './assets/mapas/predio/Tileset_3_MV.png');
         this.load.image('tile_calcada', './assets/mapas/predio/Tileset_10_MV.png');
@@ -30,9 +32,6 @@ export default class Tela extends Phaser.Scene {
         this.load.image('tile_plantas', './assets/mapas/predio/Tileset_8_MV.png');
         this.load.image('tile_hotdog', './assets/mapas/predio/Tileset_31_MV.png');
         this.load.tilemapTiledJSON('map_predio', './assets/mapas/predio/map_meta.json');
-        this.load.spritesheet("tyler", "./assets/sprites_personagens/assets_tyler/tyler_armor.png", { frameWidth: 32, frameHeight: 32 });
-        this.load.image("tecla_E", "./assets/tecla.png");
-        this.load.plugin('rexvirtualjoystickplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexvirtualjoystickplugin.min.js', true);
         this.load.audio('passosConcreto', './assets/audios/concreteFootsteps.mp3');
         this.load.audio('predioAudio', './assets/audios/Metro.mp3')
         this.load.audio('entrada', './assets/audios/entrance.mp3');
@@ -40,7 +39,7 @@ export default class Tela extends Phaser.Scene {
         this.load.audio("passaros", "./assets/audios/birds.mp3")
         this.load.audio("oceano", "./assets/audios/ocean.mp3")
         this.load.audio("musicaRei", "./assets/audios/entrance.mp3")
-        this.load.image("movimentacao", "./assets/teclas_wasd.png");
+        this.load.image("movimentacao", "./assets/elementosJogo/teclas_wasd.png");
     }
 
     create() {
@@ -103,11 +102,5 @@ export default class Tela extends Phaser.Scene {
         EUA.on('pointerout', () => {
             EUA.setScale(buttonScale / 6);
         });
-
-        // Configuração do áudio
-        //this.audio = this.sound.add("audio", { loop: true });
-        //this.audio.play();
-        //this.audio.setVolume(0.3)
-
     }
 }

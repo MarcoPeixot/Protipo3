@@ -15,8 +15,8 @@ export default class Minigame2 extends Phaser.Scene {
         this.load.image('ruivo', 'assets/Perfis/perfil_ruivo.png');
         this.load.image('aysla', 'assets/Perfis/perfil_aysla.png');
 
-        this.load.image('botao', 'assets/Perfis/aprovado.png')
-        this.load.image('botaox', 'assets/Perfis/errado.png')
+        this.load.image('botao', 'assets/Perfis/aprovado.png');
+        this.load.image('botaox', 'assets/Perfis/errado.png');
     }
     
     create() {
@@ -56,20 +56,19 @@ export default class Minigame2 extends Phaser.Scene {
                     console.log("voce errou")
                     break;
                     
+                    
                 case 3:
-                    romeo.setVisible(true);
-                    morgana.destroy();
-                    i++
-                    break;
-                case 4: 
-                    console.log("voce errou")
-                    break;
-                
-                case 5:
                     ruivo.setVisible(true);
                     romeo.destroy();
                     i++
                     break;
+                    
+                case 4: 
+                console.log("voce errou")
+                break;
+                case 5: 
+                this.scene.start('cena_castelo')
+        
                 
                     
                     
@@ -98,13 +97,11 @@ export default class Minigame2 extends Phaser.Scene {
                     break;
                      
                 case 4:
-                    romeo.setVisible(true);
-                    morgana.destroy();
+                    aysla.setVisible(true);
+                    ruivo.destroy();
                     i++
                     break;
-                case 5:
-                    console.log("voce errou")
-                    break;
+                    
                
 
 

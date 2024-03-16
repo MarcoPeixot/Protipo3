@@ -16,7 +16,8 @@ export default class Controls {
         //Adiciona a tecla E como a tecla de interação
         this.interacao = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
     }
-    // Create Method in Controls class
+
+    // Cria o joystick e as configurações
     create() {
         this.joyStick = this.scene.plugins.get('rexvirtualjoystickplugin').add(this, {
             x: this.scene.cameras.main.width / 3 - 10,
@@ -28,6 +29,7 @@ export default class Controls {
         this.joyStick.setVisible(true);    
     }
 
+    // Cria o joystick e as configurações do cenario escritorio
     createUnico() {
         this.joyStick = this.scene.plugins.get('rexvirtualjoystickplugin').add(this, {
             x: this.scene.cameras.main.width / 2.4 - 10,

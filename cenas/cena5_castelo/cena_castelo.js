@@ -102,11 +102,11 @@ export default class Scene3 extends Phaser.Scene {
         );
 
         if (mudarCena === 0) {
-            this.tyler = new Player(this, spawnPoint.x, spawnPoint.y, 'tyler', 1.2);  // Criação do jogador em uma posição específica
+            this.tyler = new Player(this, spawnPoint.x, spawnPoint.y, 'tyler_armor', 1.2);  // Criação do jogador em uma posição específica
             this.controls = new Controls(this, this.tyler);   // Criação dos controles associados ao jogador
         }
         if (mudarCena === 1) {
-            this.tyler = new Player(this, spawnPointVolta.x, spawnPointVolta.y, 'tyler', 1.2);  // Criação do jogador em outra posição
+            this.tyler = new Player(this, spawnPointVolta.x, spawnPointVolta.y, 'tyler_armor', 1.2);  // Criação do jogador em outra posição
             this.controls = new Controls(this, this.tyler);    // Criação dos controles associados ao jogador
         }
 
@@ -120,7 +120,7 @@ export default class Scene3 extends Phaser.Scene {
         this.physics.add.collider(this.tyler, this.ground);
 
         // Cria as animações utilizand  o o Animacao
-        Animacao.createAnimations(this, 'tyler');
+        Animacao.TylerArmorcreateAnimations(this); 
 
 
     }

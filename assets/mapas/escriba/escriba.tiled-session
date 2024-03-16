@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "C:/Users/Inteli/Documents/GitHub/2024-T0014-IN01-G03/src/assets/mapas/nova_floresta/floresta.tmx",
+    "activeFile": "",
     "expandedProjectPaths": [
     ],
     "fileStates": {
@@ -80,10 +80,10 @@
                 2
             ],
             "scale": 0.9594999999999999,
-            "selectedLayer": 0,
+            "selectedLayer": 3,
             "viewCenter": {
-                "x": 508.0771235018239,
-                "y": 395.5184992183429
+                "x": 507.0349140177176,
+                "y": 272.53778009379886
             }
         },
         "C:/Users/Inteli/Documents/GitHub/2024-T0014-IN01-G03/src/assets/mapas/nova_floresta/floresta.tmx#cena_floresta": {
@@ -136,7 +136,6 @@
     "map.lastUsedExportFilter": "Ficheiros de mapa JSON (*.tmj *.json)",
     "map.lastUsedFormat": "tmx",
     "openFiles": [
-        "C:/Users/Inteli/Documents/GitHub/2024-T0014-IN01-G03/src/assets/mapas/nova_floresta/floresta.tmx"
     ],
     "project": "escriba.tiled-project",
     "property.type": "bool",
