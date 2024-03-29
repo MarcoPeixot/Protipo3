@@ -93,7 +93,7 @@ export default class Minigame3 extends Phaser.Scene {
 		this.tecla_E = this.add
 			.sprite(this.tyler.x, this.tyler.y - 40, 'tecla_e')
 			.setOrigin(0.5, 0.5)
-			.setVisible(false)
+			.setVisible(true)
 			.setScale(2);
 		//Torna o rei interativo para ativar os dialogos com o clique
 
@@ -403,151 +403,150 @@ export default class Minigame3 extends Phaser.Scene {
 	numerosNegociar = [9, 16, 20, 24, 32, 39, 43, 47]
 
 	update() {
-		//verifica se o texto não está em andamento
-		if(!this.textoEmAndamento){
-			//os diálogos 0 e 1 são do rei, por isso, se o dialogo for do rei, essa condição é verdadeira
-			if(this.posicaoDialogo < 2){
-				//se o jogador apertar E
-				if (Phaser.Input.Keyboard.JustDown(this.controls.interacao)) {
-				//chama a função que controla o diálogo do rei
-				this.dialogoRei()
-				//a posicaoDialogo recebe ela mesma mais um
-				this.posicaoDialogo++
+		// Verifica se o texto não está em andamento
+		if (!this.textoEmAndamento) {
+			// Os diálogos 0 e 1 são do rei, por isso, se o diálogo for do rei, essa condição é verdadeira
+			if (this.posicaoDialogo < 2) {
+				// Se o jogador apertar E ou tocar na tela
+				if (Phaser.Input.Keyboard.JustDown(this.controls.interacao) || this.input.activePointer.isDown) {
+					// Chama a função que controla o diálogo do rei
+					this.dialogoRei();
+					// A posicaoDialogo recebe ela mesma mais um
+					this.posicaoDialogo++;
 				}
 			}
-
-			//verifica se a posição diálogo indica uma fala de todos
-		if(this.posicaoDialogo === 3 || this.posicaoDialogo === 5){
-			//verifica se a tecla E foi pressionada
-			if (Phaser.Input.Keyboard.JustDown(this.controls.interacao)) {
-				//se sim, função que controla os diálogos de todos é chamada
-				this.dialogoTodos()
-				//a posicaoDialogo recebe ela mesma mais um
-				this.posicaoDialogo++
+	
+			// Verifica se a posição diálogo indica uma fala de todos
+			if (this.posicaoDialogo === 3 || this.posicaoDialogo === 5) {
+				// Se a tecla E foi pressionada ou a tela foi tocada
+				if (Phaser.Input.Keyboard.JustDown(this.controls.interacao) || this.input.activePointer.isDown) {
+					// Se sim, função que controla os diálogos de todos é chamada
+					this.dialogoTodos();
+					// A posicaoDialogo recebe ela mesma mais um
+					this.posicaoDialogo++;
 				}
 			}
-
-			//verifica se a posição do dialogo equivale a fala do Gizmo
-		if(this.posicaoDialogo === 8 || this.posicaoDialogo === 12){
-			//verifica se a tecla E foi pressionada, se sim:
-			if (Phaser.Input.Keyboard.JustDown(this.controls.interacao)) {
-			//a função dialogoGizmo é chamada e é passado o -50 como parâmetro, o -50 serve para o personagem dar um passo a frente
-				this.dialogoGizmo(-50)
-				this.posicaoDialogo++
-			}
-		}
-		//verifica se a posicaoDialogo está dentro de numerosTyler
-		if(this.numerosTyler.includes(this.posicaoDialogo)){
-			//verifica se a tecla E foi pressionada
-			if (Phaser.Input.Keyboard.JustDown(this.controls.interacao)) {
-				//chama a função que controla o diálogo do Tyler
-				this.dialogoTyler()
-				//incrementa a posicaoDialogo em 1
-				this.posicaoDialogo++
-			}
-		}
-		//verifica se a posição do diálogo equivale aos dialogos da Aysla
-			if(this.posicaoDialogo === 15 || this.posicaoDialogo === 19|| this.posicaoDialogo === 23 || this.posicaoDialogo === 27){
-				//verifica se o E foi pressionado
-				if (Phaser.Input.Keyboard.JustDown(this.controls.interacao)) {
-				console.log(this.posicaoDialogo)
-				//a função dialogoAysla é chamada e é passado o -50 como parâmetro, o -50 serve para o personagem dar um passo a frente
-				this.dialogoAysla(-50)
-				//posicaoDialogo é incrementado em um
-				this.posicaoDialogo++
+	
+			// Verifica se a posição do dialogo equivale a fala do Gizmo
+			if (this.posicaoDialogo === 8 || this.posicaoDialogo === 12) {
+				// Se a tecla E foi pressionada ou a tela foi tocada
+				if (Phaser.Input.Keyboard.JustDown(this.controls.interacao) || this.input.activePointer.isDown) {
+					// A função dialogoGizmo é chamada e é passado o -50 como parâmetro, o -50 serve para o personagem dar um passo a frente
+					this.dialogoGizmo(-50);
+					this.posicaoDialogo++;
 				}
-		}
-		//verifica se a posicaoDialogo equivale aos dialogos do mago
-		if(this.posicaoDialogo === 31 || this.posicaoDialogo === 35){
-			//verifica se o jogador apertou E
-			if (Phaser.Input.Keyboard.JustDown(this.controls.interacao)) {
-			//a função dialogoMago é chamada e é passado o -50 como parâmetro, o -50 serve para o personagem dar um passo a frente
-			console.log(this.posicaoDialogo)
-			this.dialogoMago(-50)
-			//posicaoDialogo é incrementado em um
-			this.posicaoDialogo++
 			}
-		}
-		/*verifica se a posição do dialogo é igual a 10 (tyler aceita a proposta do Gizmo), se sim, 
-		automaticamente a posicaoDialogo recebe 14 (finalização do diálogo com o Gizmo), para garantir a fluidez dos diálogos*/
-		if(this.posicaoDialogo === 10){
-			//chama o a função que controla o dialogo do Tyler 
-			this.dialogoTyler()
-			//a posição do dialogo recebe a posição do dialogo final
-			this.posicaoDialogo = 14
-				}	
-		//Se a posição do dialogo for 29, ela se torna 30, assim uma das falas é pulada e o diálogo flui
-		if(this.posicaoDialogo === 29){
-			this.posicaoDialogo = 30
-			console.log(this.posicaoDialogo)
-		}
-		//Se a posição do dialogo for 36, ela se torna 37, assim uma das falas é pulada e o diálogo flui
-		if(this.posicaoDialogo === 36){
-			this.posicaoDialogo = 37
-			console.log(this.posicaoDialogo)
-		}
-
-		//verifica se a posição do diálogo equivale aos dialogos da elfa
-		if(this.posicaoDialogo === 38 || this.posicaoDialogo === 42 || this.posicaoDialogo === 46){
-			//verifica se o E foi pressionado
-			if (Phaser.Input.Keyboard.JustDown(this.controls.interacao)) {
-				console.log(this.posicaoDialogo)
-				//a função dialogoElfa é chamada e é passado o -50 como parâmetro, o -50 serve para o personagem dar um passo a frente
-				this.dialogoElfa(-50)
-				//incremento de 1 na posicaoDialogo
-				this.posicaoDialogo++
+	
+			// Verifica se a posicaoDialogo está dentro de numerosTyler
+			if (this.numerosTyler.includes(this.posicaoDialogo)) {
+				// Se a tecla E foi pressionada ou a tela foi tocada
+				if (Phaser.Input.Keyboard.JustDown(this.controls.interacao) || this.input.activePointer.isDown) {
+					// Chama a função que controla o diálogo do Tyler
+					this.dialogoTyler();
+					// Incrementa a posicaoDialogo em 1
+					this.posicaoDialogo++;
+				}
 			}
-		}
-
-		//verifica se a posicao do diálogo é igual a alguma posição referente às negociações
-		if(this.numerosNegociar.includes(this.posicaoDialogo)){
-			/*chama a função negociar e passa a posicaoDialogo como parâmetro, 
-			o parâmetro serve para impedir o crescimento do valor da variável dialogo mais do que o necessário*/
-			this.negociar(this.posicaoDialogo)
+	
+			// Verifica se a posição do diálogo equivale aos dialogos da Aysla
+			if (this.posicaoDialogo === 15 || this.posicaoDialogo === 19 || this.posicaoDialogo === 23 || this.posicaoDialogo === 27) {
+				// Se a tecla E foi pressionada ou a tela foi tocada
+				if (Phaser.Input.Keyboard.JustDown(this.controls.interacao) || this.input.activePointer.isDown) {
+					// A função dialogoAysla é chamada e é passado o -50 como parâmetro, o -50 serve para o personagem dar um passo a frente
+					this.dialogoAysla(-50);
+					// PosicaoDialogo é incrementado em um
+					this.posicaoDialogo++;
+				}
 			}
-		//verifica se o acordo com a elfa foi firmado, se sim, pula para a posição que finaliza o diálogo
-		if(this.posicaoDialogo === 40 || this.posicaoDialogo === 44 || this.posicaoDialogo === 51){
-			//posicaoDialogo recebe a posição que finaliza o diálogo
-			this.posicaoDialogo = 52
-			console.log(this.posicaoDialogo)
-			this.fazerTransicaoDiaSeguinte()
-			//muda para a próxima cena
-		}	
-
-	//verifica se o Tyler atingiu o limite de cliques em "negociar" para o rei interver
-	if(this.posicaoDialogo === 49){
-		//verifica se a tecla E foi apertada
-		if (Phaser.Input.Keyboard.JustDown(this.controls.interacao)) {
-			console.log(this.posicaoDialogo)
-			//chama a função dialogoRei
-			this.dialogoRei()
-			//é incrementado um na posicaoDialogo
-			this.posicaoDialogo++
+	
+			// Verifica se a posicaoDialogo equivale aos dialogos do mago
+			if (this.posicaoDialogo === 31 || this.posicaoDialogo === 35) {
+				// Se o jogador apertou E ou tocou na tela
+				if (Phaser.Input.Keyboard.JustDown(this.controls.interacao) || this.input.activePointer.isDown) {
+					// A função dialogoMago é chamada e é passado o -50 como parâmetro, o -50 serve para o personagem dar um passo a frente
+					this.dialogoMago(-50);
+					// PosicaoDialogo é incrementado em um
+					this.posicaoDialogo++;
+				}
 			}
-	}
-	//cria um único botão de aceitar para o jogador não conseguir recusar
-	if(this.posicaoDialogo === 50){
-		//deixa os assets necessários visíveis
-		this.caixaDialogo.setVisible(true)
-		this.botaoAceitar.setVisible(true)
-		this.botaoAceitar.setInteractive();
-		this.botaoAceitar.on('pointerdown', () => {
-			//deixa os assets necessários invisíveis
-			this.botaoAceitar.setVisible(false)
-			this.botaoNegociar.setVisible(false)
-			this.dialogoAceitar.setVisible(false)
-			//posicaoDialogo recebe a última posição da negociação
-			this.posicaoDialogo = 51
+	
+			// Verifica se a posição do dialogo é igual a 10 (Tyler aceita a proposta do Gizmo), se sim, automaticamente a posicaoDialogo recebe 14 (finalização do diálogo com o Gizmo), para garantir a fluidez dos diálogos
+			if (this.posicaoDialogo === 10) {
+				// Chama o a função que controla o dialogo do Tyler
+				this.dialogoTyler();
+				// A posição do dialogo recebe a posição do dialogo final
+				this.posicaoDialogo = 14;
+			}
+	
+			// Se a posição do dialogo for 29, ela se torna 30, assim uma das falas é pulada e o diálogo flui
+			if (this.posicaoDialogo === 29) {
+				this.posicaoDialogo = 30;
+			}
+	
+			// Se a posição do dialogo for 36, ela se torna 37, assim uma das falas é pulada e o diálogo flui
+			if (this.posicaoDialogo === 36) {
+				this.posicaoDialogo = 37;
+			}
+	
+			// Verifica se a posicao do diálogo equivale aos dialogos da elfa
+			if (this.posicaoDialogo === 38 || this.posicaoDialogo === 42 || this.posicaoDialogo === 46) {
+				// Se a tecla E foi pressionada ou a tela foi tocada
+				if (Phaser.Input.Keyboard.JustDown(this.controls.interacao) || this.input.activePointer.isDown) {
+					// A função dialogoElfa é chamada e é passado o -50 como parâmetro, o -50 serve para o personagem dar um passo a frente
+					this.dialogoElfa(-50);
+					// Incremento de 1 na posicaoDialogo
+					this.posicaoDialogo++;
+				}
+			}
+	
+			// Verifica se a posicao do diálogo é igual a alguma posição referente às negociações
+			if (this.numerosNegociar.includes(this.posicaoDialogo)) {
+				// Chama a função negociar e passa a posicaoDialogo como parâmetro, o parâmetro serve para impedir o crescimento do valor da variável dialogo mais do que o necessário
+				this.negociar(this.posicaoDialogo);
+			}
+	
+			// Verifica se o acordo com a elfa foi firmado, se sim, pula para a posição que finaliza o diálogo
+			if (this.posicaoDialogo === 40 || this.posicaoDialogo === 44 || this.posicaoDialogo === 51) {
+				// PosicaoDialogo recebe a posição que finaliza o diálogo
+				this.posicaoDialogo = 52;
+				this.fazerTransicaoDiaSeguinte();
+				// Muda para a próxima cena
+			}
+	
+			// Verifica se o Tyler atingiu o limite de cliques em "negociar" para o rei interver
+			if (this.posicaoDialogo === 49) {
+				// Se a tecla E foi apertada ou a tela foi tocada
+				if (Phaser.Input.Keyboard.JustDown(this.controls.interacao) || this.input.activePointer.isDown) {
+					// Chama a função dialogoRei
+					this.dialogoRei();
+					// É incrementado um na posicaoDialogo
+					this.posicaoDialogo++;
+				}
+			}
+	
+			// Cria um único botão de aceitar para o jogador não conseguir recusar
+			if (this.posicaoDialogo === 50) {
+				// Deixa os assets necessários visíveis
+				this.caixaDialogo.setVisible(true);
+				this.botaoAceitar.setVisible(true);
+				this.botaoAceitar.setInteractive();
+				this.botaoAceitar.on('pointerdown', () => {
+					// Deixa os assets necessários invisíveis
+					this.botaoAceitar.setVisible(false);
+					this.botaoNegociar.setVisible(false);
+					this.dialogoAceitar.setVisible(false);
+					// PosicaoDialogo recebe a última posição da negociação
+					this.posicaoDialogo = 51;
 				});
-	}
-}
-		//os controles são atualizados
+			}
+		}
+	
+		// Os controles são atualizados
 		this.controls.update();
-		//os icones acompanham o Tyler
+		// Os ícones acompanham o Tyler
 		this.tecla_E.setPosition(this.tyler.x, this.tyler.y - 40);
-		//verifica se a velocidade do tyler é maior q 0 ou não
-		if (
-			(this.tyler.body.velocity.x !== 0 || this.tyler.body.velocity.y !== 0) &&
+		// Verifica se a velocidade do tyler é maior q 0 ou não
+		if ((this.tyler.body.velocity.x !== 0 || this.tyler.body.velocity.y !== 0) &&
 			!this.passosConcreto.isPlaying
 		) {
 			this.passosConcreto.play(); // Reproduz o som dos passos
@@ -558,9 +557,8 @@ export default class Minigame3 extends Phaser.Scene {
 		) {
 			this.passosConcreto.stop(); // Para o som dos passos se o jogador não estiver se movendo
 		}
-
 	}
-
+	
 	fazerTransicaoDiaSeguinte() {
 		// Escurece a tela
 		this.cameras.main.fadeOut(1000, 0, 0, 0, (camera, progress) => {
@@ -571,7 +569,7 @@ export default class Minigame3 extends Phaser.Scene {
 					fontSize: '32px',
 					color: '#FFFFFF'
 				}).setOrigin(0.5);
-
+	
 				// Configura o tempo para remover o texto e restaurar a visão da cena após 2 segundos
 				this.time.delayedCall(2000, () => {
 					// Remove o texto
@@ -584,6 +582,7 @@ export default class Minigame3 extends Phaser.Scene {
 			}
 		});
 	}
+	
 
 	//função que muda a cena e cancela o áudio que estava passando
 	transitionToScene2(cena) {
