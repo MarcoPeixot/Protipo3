@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="20" height="18" tilewidth="32" tileheight="32" infinite="0" nextlayerid="5" nextobjectid="5">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="20" height="18" tilewidth="32" tileheight="32" infinite="0" nextlayerid="6" nextobjectid="6">
  <editorsettings>
   <export target="escriba.json" format="json"/>
  </editorsettings>
@@ -1852,6 +1852,11 @@
  </layer>
  <objectgroup id="3" name="player">
   <object id="1" name="spawning point player" x="77" y="253">
+   <point/>
+  </object>
+ </objectgroup>
+ <objectgroup id="5" name="voltar">
+  <object id="5" name="spawning point voltar" x="496.008" y="299.406">
    <point/>
   </object>
  </objectgroup>

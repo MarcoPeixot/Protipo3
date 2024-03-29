@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Título da página -->
-    <title>Protótipo 2</title>
+    <title>Protótipo 3</title>
 
     <!-- Inclusão da biblioteca Phaser -->
     <script src="https://cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.min.js"></script>
@@ -22,7 +22,8 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            background: #000000; 
+            background: #000000;
+            /* Fundo preto */
         }
     </style>
 </head>
@@ -32,41 +33,42 @@
     <script type="module">
         // Importação das cenas do jogo
         import Tela from './cenas/menu/tela.js';
-        import Scene1 from './cenas/cena1_predio/cena_predio.js';
+        import ScenePredio from './cenas/cena1_predio/cena_predio.js';
         import SceneOffice from './cenas/cena2_escritorio/cena_escritorio.js';
-        import MainScene from './cenas/cena3_floresta/cena_floresta.js';
-        import Scene2 from './cenas/cena4_exterior/cena_exterior.js';
-        import SceneCastle from './cenas/cena5_castelo/cena_castelo.js';
         import SceneCorredor from './cenas/cena6_corredor_castelo/cena_corredor.js';
+        import SceneCastle from './cenas/cena5_castelo/cena_castelo.js';
         import SceneEscriba from './cenas/cena7_escriba/cena_escriba.js';
-        import minigame1 from './cenas/minigame1.js'
-        import minigame2 from './cenas/minigame2.js'
+        import SceneFesta from './cenas/cena8_festa/cena_metaConnect.js';
+
+        import minigame1 from './cenas/minigames/minigame1/minigame1.js'
+        import minigame2 from './cenas/minigames/minigame2/minigame2.js'
+        import minigame3 from './cenas/minigames/minigame3/minigame3.js'
+
+        import SceneExterior2 from './cenas/cena3_exterior/cena_exterior.js';
+
         // Configuração do jogo com Phaser
         const config = {
-            pixelArt: true,
-            type: Phaser.AUTO,
-            width: 1280,
-            height: 720,
+            pixelArt: true, // Habilita o modo de pixel art
+            type: Phaser.AUTO, // Tipo de renderização automática
+            width: 1280, // Largura da tela do jogo
+            height: 720, // Altura da tela do jogo
             scale: {
-                mode: Phaser.Scale.FIT,
+                mode: Phaser.Scale.FIT, // Modo de escala FIT para dimensionamento automático
             },
             physics: {
                 default: 'arcade',
                 arcade: {
-                    gravity: { y: 0 },
+                    gravity: { y: 0 }, // Define a gravidade no eixo y como 0
                     debug: false
                 }
             },
 
-            scene: [ Tela, Scene1, minigame1, minigame2, Scene2, MainScene, SceneCastle, SceneOffice, SceneCorredor, SceneEscriba]
-
-            
+            // Lista de cenas do jogo
+            scene: [ Tela, ScenePredio, SceneOffice, SceneExterior2, SceneCorredor, SceneCastle, SceneEscriba, minigame1,  minigame2, minigame3, SceneFesta]
         };
 
         // Criação da instância do jogo
         const game = new Phaser.Game(config);
-
-        
     </script>
 </body>
 
