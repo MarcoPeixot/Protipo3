@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="30" height="23" tilewidth="32" tileheight="32" infinite="0" nextlayerid="7" nextobjectid="5">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="30" height="23" tilewidth="32" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="6">
  <editorsettings>
   <export target="sala_rei.json" format="json"/>
  </editorsettings>
@@ -3387,6 +3387,11 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
+ <objectgroup id="7" name="outra">
+  <object id="5" name="spawning point outra" x="879.159" y="456.348">
+   <point/>
+  </object>
+ </objectgroup>
  <objectgroup id="2" name="player">
   <object id="1" name="spawning point player" x="91.4451" y="453.753">
    <point/>

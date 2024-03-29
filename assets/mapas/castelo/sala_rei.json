@@ -106,6 +106,29 @@
         }, 
         {
          "draworder":"topdown",
+         "id":7,
+         "name":"outra",
+         "objects":[
+                {
+                 "height":0,
+                 "id":5,
+                 "name":"spawning point outra",
+                 "point":true,
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":879.159,
+                 "y":456.348
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
          "id":2,
          "name":"player",
          "objects":[
@@ -173,8 +196,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":7,
- "nextobjectid":5,
+ "nextlayerid":8,
+ "nextobjectid":6,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.10.2",

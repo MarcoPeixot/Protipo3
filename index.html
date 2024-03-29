@@ -22,7 +22,8 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            background: #000000; /* Fundo preto */
+            background: #000000;
+            /* Fundo preto */
         }
     </style>
 </head>
@@ -34,13 +35,16 @@
         import Tela from './cenas/menu/tela.js';
         import ScenePredio from './cenas/cena1_predio/cena_predio.js';
         import SceneOffice from './cenas/cena2_escritorio/cena_escritorio.js';
-        import SceneFloresta from './cenas/cena3_floresta/cena_floresta.js';
-        import SceneExterior from './cenas/cena4_exterior/cena_exterior.js';
-        import SceneCastle from './cenas/cena5_castelo/cena_castelo.js';
         import SceneCorredor from './cenas/cena6_corredor_castelo/cena_corredor.js';
+        import SceneCastle from './cenas/cena5_castelo/cena_castelo.js';
         import SceneEscriba from './cenas/cena7_escriba/cena_escriba.js';
+        import SceneFesta from './cenas/cena8_festa/cena_metaConnect.js';
+
         import minigame1 from './cenas/minigames/minigame1/minigame1.js'
         import minigame2 from './cenas/minigames/minigame2/minigame2.js'
+        import minigame3 from './cenas/minigames/minigame3/minigame3.js'
+
+        import SceneExterior2 from './cenas/cena3_exterior/cena_exterior.js';
 
         // Configuração do jogo com Phaser
         const config = {
@@ -52,15 +56,15 @@
                 mode: Phaser.Scale.FIT, // Modo de escala FIT para dimensionamento automático
             },
             physics: {
-                default: 'arcade', 
+                default: 'arcade',
                 arcade: {
                     gravity: { y: 0 }, // Define a gravidade no eixo y como 0
-                    debug: false 
+                    debug: false
                 }
             },
 
             // Lista de cenas do jogo
-            scene: [ Tela, ScenePredio, minigame1, minigame2, SceneExterior, SceneFloresta, SceneCastle, SceneOffice, SceneCorredor, SceneEscriba]
+            scene: [ Tela, ScenePredio, SceneOffice, SceneExterior2, SceneCorredor, SceneCastle, SceneEscriba, minigame1,  minigame2, minigame3, SceneFesta]
         };
 
         // Criação da instância do jogo
